@@ -10,7 +10,10 @@ if (process.env.DATABASE_URL) {
   connectionString = process.env.DATABASE_URL + "?ssl=true";
 }
 
-const client = new Client(connectionString);
+const client = new Client({
+  connectionString,
+  ssl: { rejectUnauthorized: false },
+});
 
 client.connect();
 
