@@ -1,19 +1,20 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import { fetchProducts } from "./utils";
 
 const App = () => {
   const [products, setProducts] = useState([]);
 
+  const fetchProducts = async () => {
+    const response = await fetch("/api/products");
+    const info = await response.json();
+    setProducts(info);
+  };
+
   useEffect(() => {
-    const fetchInitialState = async () => {
-      const products = await fetchProducts();
-      setProducts(products);
-    };
-    fetchInitialState();
+    fetchProducts();
   }, []);
 
-  return <>Full-Stack App!</>;
+  return <>Full-Stack App!!!!</>;
 };
 
 export default App;
