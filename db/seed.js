@@ -5,9 +5,9 @@ const seedDB = async () => {
   await client.query(`
     DROP TABLE IF EXISTS products;
 
-    CREATE TABLE products (id SERIAL PRIMARY KEY, name VARCHAR(255) UNIQUE);
+    CREATE TABLE products (id SERIAL PRIMARY KEY, title VARCHAR(255) UNIQUE);
 
-    INSERT INTO products (name) VALUES ('Acer Nitro 5 Laptop');
+    INSERT INTO products (title) VALUES ('Acer Nitro 5 Laptop');
     `);
 
   console.log("DB SEEDED.");
