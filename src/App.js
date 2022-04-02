@@ -12,8 +12,8 @@ const App = () => {
     };
     fetchInitialState();
   }, []);
-  console.log(products);
-  return <>Full-Stack App!!!</>;
+
+  return <>Full-Stack App!</>;
 };
 
 export default App;
