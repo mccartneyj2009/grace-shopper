@@ -1,19 +1,19 @@
 const { Client } = require("pg");
 
-let connectionString = {
-  password: process.env.DB_PASSWORD,
-  user: process.env.DB_USER,
-  database: process.env.DB_NAME,
-};
+let client;
 
 if (process.env.DATABASE_URL) {
-  connectionString = process.env.DATABASE_URL;
+  client = new Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: { rejectUnauthorized: false },
+  });
+} else {
+  client = new Client({
+    password: process.env.DB_PASSWORD,
+    user: process.env.DB_USER,
+    database: process.env.DB_NAME,
+  });
 }
-
-const client = new Client({
-  connectionString,
-  ssl: { rejectUnauthorized: false },
-});
 
 client.connect();
 
