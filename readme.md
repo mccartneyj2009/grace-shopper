@@ -18,8 +18,8 @@
   Columns:
   - id
   - type (ex.:Beef, Chicken, Pork, etc...)
-  - cut (ex.:)
-  - preparation (ex.: raw, smoked, marinated)
+  - style (ex.: raw, marinated, smoked, etc...)
+  - flavor (ex.: terryaki, spicy, none, etc...)
   
   ## orders
   Columns:
