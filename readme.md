@@ -5,3 +5,5 @@ DB_USER=postgres
 DB_NAME=grace-shopper
 
 2. Create a local database called "grace-shopper"
+
+3. Anthony's Branch connected
