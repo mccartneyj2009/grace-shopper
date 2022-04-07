@@ -17,6 +17,22 @@ const client = new Client(
 //   });
 // }
 
+async function createTables() {
+  try {
+    console.log("Creating Tables");
+
+    await client.query(`
+    CREATE TABLE users (
+      id SERIAL PRIMARY KEY,
+      email varchar(255) UNIQUE NOT NULL,
+      password varchar(255) NOT NULL
+    )`);
+  } catch (error) {
+    console.log("Error Creating Tables");
+    throw error;
+  }
+}
+
 client.connect();
 
 module.exports = client;
