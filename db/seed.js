@@ -10,10 +10,10 @@ async function dropTables() {
     try {
         console.log("Dropping Tables");
         await client.query(`
-      DROP TABLE IF EXISTS user_meats;
-      DROP TABLE IF EXISTS meat;
-      DROP TABLE IF EXISTS orders;
-      DROP TABLE IF EXISTS users;`);
+        DROP TABLE IF EXISTS user_meats;
+        DROP TABLE IF EXISTS meat;
+        DROP TABLE IF EXISTS orders;
+        DROP TABLE IF EXISTS users;`);
     } catch (error) {
         console.log("Error Dropping Tables");
         throw error;
@@ -25,34 +25,36 @@ async function createTables() {
         console.log("Creating Tables");
 
         await client.query(`
-      CREATE TABLE users (
+        CREATE TABLE users (
         id SERIAL PRIMARY KEY,
-        email varchar(255) UNIQUE NOT NULL,
-        password varchar(255) NOT NULL
-      );
+        email VARCHAR(255) UNIQUE NOT NULL,
+        password VARCHAR(255) NOT NULL,
+        first_name VARCHAR(255) NOT NULL,
+        last_name VARCHAR(255) NOT NULL
+        );
       
-      CREATE TABLE meat (
+        CREATE TABLE meat (
         id SERIAL PRIMARY KEY,
-        species varchar (255) NOT NULL,
-        style varchar (255) NOT NULL,
-        description varchar(255),
+        species VARCHAR (255) NOT NULL,
+        style VARCHAR (255) NOT NULL,
+        description VARCHAR(255),
         flavor varchar (255) NOT NULL,
         weight DECIMAL NOT NULL,
         price DECIMAL NOT NULL
-      );
-      
-      CREATE TABLE orders (
+        );
+        
+        CREATE TABLE orders (
         id SERIAL PRIMARY KEY,
         user_id INTEGER REFERENCES users(id),
         fufilled BOOLEAN DEFAULT false
-      );
-      
-      CREATE TABLE user_meats (
+        );
+        
+        CREATE TABLE user_meats (
         id SERIAL PRIMARY KEY,
         meat_id INTEGER REFERENCES meat(id),
         user_id INTEGER REFERENCES users(id),
         order_id INTEGER REFERENCES meat(id)
-      );`);
+        );`);
     } catch (error) {
         console.log("Error Creating Tables");
         throw error;
@@ -64,14 +66,20 @@ async function createInitialUsers() {
         await createUser({
             email: "hotmeat1@hotmail.com",
             password: "Greasy1",
+            first_name: "Tony",
+            last_name: "Romano",
         });
         await createUser({
             email: "lilsmokey@bigdogzonly.com",
             password: "Greasy2",
+            first_name: "James",
+            last_name: "McCartney",
         });
         await createUser({
             email: "papaSausage@gmail.com",
             password: "Carved1",
+            first_name: "PJ",
+            last_name: "Witt",
         });
     } catch (error) {
         console.log("Error Creating Users");
