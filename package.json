@@ -7,7 +7,8 @@
     "start": "node index.js",
     "react": "react-scripts start",
     "build": "react-scripts build",
-    "seed": "node db/seed"
+    "seed": "node db/seed",
+    "start:dev": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
