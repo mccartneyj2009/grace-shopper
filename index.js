@@ -7,7 +7,7 @@ let PORT = process.env.PORT || 3001;
 
 const app = express();
 
-app.use("/api", apiRouter);
+app.use(express.json());
 
 // app.use(express.static("build"));
 
@@ -16,6 +16,6 @@ app.use("/api", apiRouter);
 // });
 
 app.listen(PORT, () => {
-    console.log("Server is up on port: " + PORT);
-    client.connect();
+  console.log("Server is up on port: " + PORT);
+  client.connect();
 });
