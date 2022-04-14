@@ -30,7 +30,8 @@ async function createTables() {
         email VARCHAR(255) UNIQUE NOT NULL,
         password VARCHAR(255) NOT NULL,
         first_name VARCHAR(255) NOT NULL,
-        last_name VARCHAR(255) NOT NULL
+        last_name VARCHAR(255) NOT NULL,
+        administrator BOOLEAN DEFAULT false
         );
       
         CREATE TABLE meat (
@@ -68,6 +69,7 @@ async function createInitialUsers() {
             password: "Greasy1",
             first_name: "Tony",
             last_name: "Romano",
+            administrator: true,
         });
         await createUser({
             email: "lilsmokey@bigdogzonly.com",

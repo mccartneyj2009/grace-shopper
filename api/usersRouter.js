@@ -6,6 +6,7 @@ const {
     getUserByEmail,
     getUserById,
     createUser,
+    // deleteUser,
 } = require("../db/index");
 
 const usersRouter = express.Router();
@@ -71,9 +72,10 @@ usersRouter.post("/login", async (req, res, next) => {
 
         if (!user) {
             res.send({
-                name: "noUser",
-                error: "No user found with those credentials.",
+                name: "invalidCredentials",
+                error: "Invalid email or password.",
             });
+            return;
         }
 
         const token = jwt.sign(
@@ -88,5 +90,29 @@ usersRouter.post("/login", async (req, res, next) => {
         next(error);
     }
 });
+
+// usersRouter.delete("/delete/:id", async (req, res, next) => {
+//     const { token } = req.body;
+//     console.log(token);
+//     try {
+//         const userId = req.params.id;
+//         const user = await getUserById(userId);
+//         console.log(user);
+
+//         if (!user) {
+//             res.send({ name: "userNotFound", message: "No user found." });
+//             return;
+//         }
+
+//         const { id, email } = user;
+//         deleteUser({ id, email });
+//         res.send({
+//             name: "accountDeleted",
+//             message: `Account deleted for ${email}.`,
+//         });
+//     } catch (error) {
+//         next(error);
+//     }
+// });
 
 module.exports = usersRouter;
