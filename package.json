@@ -7,13 +7,17 @@
     "start": "node index.js",
     "react": "react-scripts start",
     "build": "react-scripts build",
-    "seed": "node db/seed"
+    "seed": "node db/seed",
+    "start:dev": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "proxy": "http://localhost:3001",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/react-fontawesome": "^0.1.18",
     "bcrypt": "^5.0.1",
     "dot-env": "^0.0.1",
     "express": "^4.17.3",
