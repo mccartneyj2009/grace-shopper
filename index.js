@@ -18,6 +18,6 @@ app.use("/api", apiRouter);
 // });
 
 app.listen(PORT, () => {
-    console.log("Server is up on port: " + PORT);
-    client.connect();
+  console.log("Server is up on port: " + PORT);
+  client.connect();
 });
