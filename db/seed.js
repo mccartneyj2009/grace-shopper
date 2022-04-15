@@ -30,7 +30,8 @@ async function createTables() {
         email VARCHAR(255) UNIQUE NOT NULL,
         password VARCHAR(255) NOT NULL,
         first_name VARCHAR(255) NOT NULL,
-        last_name VARCHAR(255) NOT NULL
+        last_name VARCHAR(255) NOT NULL,
+        administrator BOOLEAN DEFAULT false
         );
       
         CREATE TABLE meat (
@@ -61,30 +62,31 @@ async function createTables() {
   }
 }
 async function createInitialUsers() {
-  try {
-    console.log("Creating Users");
-    await createUser({
-      email: "hotmeat1@hotmail.com",
-      password: "Greasy1",
-      first_name: "Tony",
-      last_name: "Romano",
-    });
-    await createUser({
-      email: "lilsmokey@bigdogzonly.com",
-      password: "Greasy2",
-      first_name: "James",
-      last_name: "McCartney",
-    });
-    await createUser({
-      email: "papaSausage@gmail.com",
-      password: "Carved1",
-      first_name: "PJ",
-      last_name: "Witt",
-    });
-  } catch (error) {
-    console.log("Error Creating Users");
-    throw error;
-  }
+    try {
+        console.log("Creating Users");
+        await createUser({
+            email: "hotmeat1@hotmail.com",
+            password: "Greasy1",
+            first_name: "Tony",
+            last_name: "Romano",
+            administrator: true,
+        });
+        await createUser({
+            email: "lilsmokey@bigdogzonly.com",
+            password: "Greasy2",
+            first_name: "James",
+            last_name: "McCartney",
+        });
+        await createUser({
+            email: "papaSausage@gmail.com",
+            password: "Carved1",
+            first_name: "PJ",
+            last_name: "Witt",
+        });
+    } catch (error) {
+        console.log("Error Creating Users");
+        throw error;
+    }
 }
 
 async function createInitialOrders() {
