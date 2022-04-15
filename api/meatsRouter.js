@@ -1,5 +1,13 @@
 const express = require("express");
-const { getAllMeats, getMeatByPrice } = require("../db");
+const {
+  createMeat,
+  updateMeat,
+  getAllMeats,
+  getMeatByStyle,
+  getAllStyles,
+  getMeatByAllSpecies,
+  getMeatBySingleSpecies,
+} = require("../db");
 const meatsRouter = express.Router();
 
 meatsRouter.use((req, res, next) => {
@@ -8,36 +16,93 @@ meatsRouter.use((req, res, next) => {
   next();
 });
 
+//---------- Get Routes --------------//
 meatsRouter.get("/", async (req, res) => {
   try {
     const meat = await getAllMeats();
-    res.send({
-      meat,
-    });
+    res.send(meat);
   } catch (error) {
     next(error);
   }
 });
 
-// meatsRouter.get("/price", async (req, res) => {
-//   try {
-//     const prices = getMeatByPrice();
-//     res.send({
-//       prices,
-//     });
-//   } catch (error) {
-//     next(error);
-//   }
-// });
-
-meatsRouter.get("/filets", async (req, res) => {
+meatsRouter.get("/styles", async (req, res, next) => {
   try {
-    const filet = "filets";
-    res.send({
-      filet,
-    });
+    const styles = await getAllStyles();
+    res.send(styles);
   } catch (error) {
     next(error);
   }
 });
+
+meatsRouter.get("/styles/:style", async (req, res, next) => {
+  try {
+    const meat = await getMeatByStyle(req.params.style);
+    res.send(meat);
+  } catch (error) {
+    next(error);
+  }
+});
+
+meatsRouter.get("/species", async (req, res, next) => {
+  try {
+    const animal = await getMeatByAllSpecies();
+    res.send(animal);
+  } catch (error) {
+    next(error);
+  }
+});
+
+meatsRouter.get("/species/:type", async (req, res, next) => {
+  try {
+    const animalType = await getMeatBySingleSpecies(req.params.type);
+    res.send(animalType);
+  } catch (error) {
+    next(error);
+  }
+});
+
+//-----Post Routes-----//
+
+meatsRouter.post("/", async (req, res, next) => {
+  const { species, style, description, flavor, weight, price } = req.body;
+
+  try {
+    const newMeat = await createMeat({
+      species,
+      style,
+      description,
+      flavor,
+      weight,
+      price,
+    });
+    if (newMeat) {
+      res.send(newMeat);
+    }
+  } catch (error) {
+    next(error);
+  }
+});
+
+//----Patch Routes-----//
+
+meatsRouter.patch("/:meatId", async (req, res, next) => {
+  try {
+    const { meatId } = req.params;
+    const { description, weight, price } = req.body;
+
+    const newMeat = await updateMeat({
+      id: meatId,
+      description,
+      weight,
+      price,
+    });
+    if (newMeat) {
+      res.send(newMeat);
+    }
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = meatsRouter;

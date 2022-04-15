@@ -25,6 +25,21 @@ async function createMeat({
     throw error;
   }
 }
+async function updateMeat({ description, weight, price }) {
+  try {
+    const {
+      rows: [meat],
+    } = await client.query(
+      `
+    UPDATE meat SET  description = ($1), weight = ($2), price = ($3) RETURNING *;`,
+      [description, weight, price]
+    );
+    console.log(meat);
+    return meat;
+  } catch (error) {
+    throw error;
+  }
+}
 
 async function getAllMeats() {
   try {
@@ -33,6 +48,7 @@ async function getAllMeats() {
       SELECT * FROM meat;
     `
     );
+
     return rows;
   } catch (error) {
     throw error;
@@ -61,10 +77,12 @@ async function getMeatByStyle(style) {
       [style]
     );
     console.log(rows);
+    return rows;
   } catch (error) {
     throw error;
   }
 }
+
 async function getMeatByPrice(cost) {
   try {
     const { rows } = await client.query(
@@ -75,9 +93,58 @@ async function getMeatByPrice(cost) {
       [cost]
     );
     console.log(rows);
+    return rows;
   } catch (error) {
     throw error;
   }
 }
-getMeatByPrice(700);
-module.exports = { createMeat, getAllMeats, getMeatByPrice };
+
+async function getAllStyles() {
+  try {
+    const { rows } = await client.query(`
+    SELECT style FROM meat`);
+    console.log(rows);
+    return rows;
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function getMeatByAllSpecies() {
+  try {
+    const { rows } = await client.query(`
+        SELECT species FROM meat`);
+    console.log(rows);
+    return rows;
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function getMeatBySingleSpecies(species) {
+  try {
+    const { rows } = await client.query(
+      `
+        SELECT style, description, weight, price 
+        FROM meat
+        WHERE species = $1`,
+      [species]
+    );
+    console.log(rows);
+    return rows;
+  } catch (error) {
+    throw error;
+  }
+}
+
+getMeatBySingleSpecies("Bison");
+module.exports = {
+  createMeat,
+  updateMeat,
+  getAllMeats,
+  getMeatByPrice,
+  getMeatByStyle,
+  getAllStyles,
+  getMeatByAllSpecies,
+  getMeatBySingleSpecies,
+};
