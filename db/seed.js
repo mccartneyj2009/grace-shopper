@@ -62,7 +62,6 @@ async function createTables() {
   }
 }
 async function createInitialUsers() {
-<<<<<<< HEAD
   try {
     console.log("Creating Users");
     await createUser({
@@ -70,6 +69,7 @@ async function createInitialUsers() {
       password: "Greasy1",
       first_name: "Tony",
       last_name: "Romano",
+      administrator: true,
     });
     await createUser({
       email: "lilsmokey@bigdogzonly.com",
@@ -87,33 +87,6 @@ async function createInitialUsers() {
     console.log("Error Creating Users");
     throw error;
   }
-=======
-    try {
-        console.log("Creating Users");
-        await createUser({
-            email: "hotmeat1@hotmail.com",
-            password: "Greasy1",
-            first_name: "Tony",
-            last_name: "Romano",
-            administrator: true,
-        });
-        await createUser({
-            email: "lilsmokey@bigdogzonly.com",
-            password: "Greasy2",
-            first_name: "James",
-            last_name: "McCartney",
-        });
-        await createUser({
-            email: "papaSausage@gmail.com",
-            password: "Carved1",
-            first_name: "PJ",
-            last_name: "Witt",
-        });
-    } catch (error) {
-        console.log("Error Creating Users");
-        throw error;
-    }
->>>>>>> b6a488458653c249166619f4dc3eec54f4c8ef14
 }
 
 async function createInitialOrders() {
@@ -121,17 +94,6 @@ async function createInitialOrders() {
     console.log("Creating Orders");
     await createOrder({
       user_id: 1,
-<<<<<<< HEAD
-      fufilled: false,
-    });
-    await createOrder({
-      user_id: 2,
-      fufilled: false,
-    });
-    await createOrder({
-      user_id: 3,
-      fufilled: false,
-=======
       fulfilled: false,
     });
     await createOrder({
@@ -141,7 +103,6 @@ async function createInitialOrders() {
     await createOrder({
       user_id: 3,
       fulfilled: false,
->>>>>>> b6a488458653c249166619f4dc3eec54f4c8ef14
     });
   } catch (error) {
     console.log("Error Creating Orders");
@@ -185,11 +146,7 @@ async function createInitialMeats() {
     });
     await createMeat({
       species: "Gnarwall",
-<<<<<<< HEAD
-      style: "filet",
-=======
       style: "Filet",
->>>>>>> b6a488458653c249166619f4dc3eec54f4c8ef14
       description:
         "Angled from the northern most part of the north sea, sliced and diced for your pallet pleasure",
       flavor: "delicious",
