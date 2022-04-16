@@ -1,20 +1,18 @@
-import Home from "./Home";
-import Navbar from "./Navbar";
+import { Route, Routes } from "react-router-dom";
+
+import { Meat, Home, Navbar } from "./components";
 
 const App = () => {
- 
-
   return (
     <div id="container">
-      <Navbar  />
-      {/* <div id="main-section">
+      <Navbar />
+      <div id="main-section">
         <Routes>
-          <Route exact element={<Home  />} path="/" />
+          <Route exact path="/" element={<Home />} />
 
-          <Route exact element={<Meats  />}
-             />
-            </Routes>
-            </div> */}
+          <Route exact path="/meat" element={<Meat />} />
+        </Routes>
+      </div>
     </div>
   );
 };
