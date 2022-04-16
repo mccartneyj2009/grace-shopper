@@ -57,6 +57,10 @@
     align-items: center;
 }
 
+body {
+    height: 1500px;
+}
+
 #logo {
     height: 440px;
     width: 440px;
@@ -91,6 +95,20 @@ h1 {
     font-size: 45px;
     color: black;
     padding-left: 15px;
+}
+
+footer {
+    background-color: black;
+    height: 75px;
+    width: 100%;
+    position: fixed;
+}
+
+.tag {
+    display: flex;
+    padding-top: 45px;
+    padding-left: 15px;
+    color: white;
 }
 
 @keyframes shake {
