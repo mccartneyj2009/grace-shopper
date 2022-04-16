@@ -1,20 +1,21 @@
-import { useState } from "react";
-import { useEffect } from "react";
+import Home from "./Home";
+import Navbar from "./Navbar";
 
 const App = () => {
-  const [products, setProducts] = useState([]);
+ 
 
-  const fetchProducts = async () => {
-    const response = await fetch("/api/products");
-    const info = await response.json();
-    setProducts(info);
-  };
+  return (
+    <div id="container">
+      <Navbar  />
+      {/* <div id="main-section">
+        <Routes>
+          <Route exact element={<Home  />} path="/" />
 
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
-  return <>Full-Stack App!!!!</>;
+          <Route exact element={<Meats  />}
+             />
+            </Routes>
+            </div> */}
+    </div>
+  );
 };
-
 export default App;
