@@ -17,7 +17,9 @@ app.use("/api", apiRouter);
 //   res.sendFile(__dirname + "/build/index.html");
 // });
 
+// app.use(error, req, res, next)
+
 app.listen(PORT, () => {
-  console.log("Server is up on port: " + PORT);
-  client.connect();
+    console.log("Server is up on port: " + PORT);
+    client.connect();
 });
