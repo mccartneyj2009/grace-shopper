@@ -7,17 +7,18 @@ async function createMeat({
   flavor,
   weight,
   price,
+  image,
 }) {
   try {
     const {
       rows: [user],
     } = await client.query(
       `
-      INSERT INTO meat(species,style,description,flavor,weight,price) 
-      VALUES($1, $2, $3, $4, $5, $6) 
+      INSERT INTO meat(species,style,description,flavor,weight,price,image) 
+      VALUES($1, $2, $3, $4, $5, $6,$7) 
       RETURNING *;
     `,
-      [species, style, description, flavor, weight, price]
+      [species, style, description, flavor, weight, price, image]
     );
 
     return user;

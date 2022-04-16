@@ -40,6 +40,7 @@ async function createTables() {
         style VARCHAR (255) NOT NULL,
         description VARCHAR(255),
         flavor varchar (255) NOT NULL,
+        image TEXT,
         weight DECIMAL NOT NULL,
         price DECIMAL NOT NULL
         );
@@ -141,6 +142,7 @@ async function createInitialMeats() {
       style: "Ground Beef",
       description: "tender, low fat, grass fed",
       flavor: "plain",
+      image: "thick",
       weight: 1,
       price: 5,
     });
@@ -150,6 +152,7 @@ async function createInitialMeats() {
       description:
         "Angled from the northern most part of the north sea, sliced and diced for your pallet pleasure",
       flavor: "delicious",
+      image: "slender",
       weight: 0.25,
       price: 700,
     });
@@ -159,6 +162,7 @@ async function createInitialMeats() {
       description:
         "Hunted by Buffalo Bill himself, Has been marinating for 100 years",
       flavor: "American",
+      // image: "buttered",
       weight: 20,
       price: 1000,
     });
