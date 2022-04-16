@@ -8,14 +8,7 @@ const {
 
 const ordersRouter = express.Router();
 
-ordersRouter.get("", async (req, res, next) => {
-  try {
-  } catch (error) {
-    next(error);
-  }
-});
-
-ordersRouter.get("/orders", async (req, res, next) => {
+ordersRouter.get("/", async (req, res, next) => {
   try {
     const orders = await getAllOrders();
     res.send({ orders });
@@ -35,5 +28,23 @@ ordersRouter.get("/orders", async (req, res, next) => {
 //       next(error);
 //     }
 //   });
+
+ordersRouter.get("/", async (req, res, next) => {
+  try {
+    const orders = await getOrdersByUserId(user_id);
+    res.send({ orders });
+  } catch (error) {
+    next(error);
+  }
+});
+
+ordersRouter.get("/", async (req, res, next) => {
+  try {
+    const orders = await getOrdersByFulfilled(true);
+    res.send({ orders });
+  } catch (error) {
+    next(error);
+  }
+});
 
 module.exports = ordersRouter;

@@ -5,6 +5,8 @@ import { BrowserRouter, Route, Link } from "react-router-dom";
 
 const App = () => {
   const [products, setProducts] = useState([]);
+  const [token, setToken] = useState("");
+  const [user, setUser] = useState({});
 
   const fetchProducts = async () => {
     const response = await fetch("/api/products");
