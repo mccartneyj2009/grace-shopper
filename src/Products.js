@@ -26,6 +26,6 @@ const Products = (token) => {
   }, []);
 
 //   return ()
-      
+};
      
   export default Products;
