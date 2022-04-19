@@ -7,7 +7,10 @@ const {
   getAllStyles,
   getMeatByAllSpecies,
   getMeatBySingleSpecies,
+  getMeatById,
+  deleteMeat,
 } = require("../db");
+const { adminRequired } = require("./admin");
 const meatsRouter = express.Router();
 
 meatsRouter.use((req, res, next) => {
@@ -97,9 +100,22 @@ meatsRouter.patch("/:meatId", async (req, res, next) => {
       weight,
       price,
     });
+
     if (newMeat) {
       res.send(newMeat);
     }
+  } catch (error) {
+    next(error);
+  }
+});
+
+//----Delete Meat---//
+meatsRouter.delete("/:meatId", async (req, res, next) => {
+  try {
+    const { meatId } = req.params;
+
+    const meatDelete = await deleteMeat(meatId);
+    res.send(meatDelete);
   } catch (error) {
     next(error);
   }
