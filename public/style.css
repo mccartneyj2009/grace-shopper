@@ -97,19 +97,6 @@ h1 {
     padding-left: 15px;
 }
 
-footer {
-    background-color: black;
-    height: 75px;
-    width: 100%;
-    position: fixed;
-}
-
-.tag {
-    display: flex;
-    padding-top: 45px;
-    padding-left: 15px;
-    color: white;
-}
 
 @keyframes shake {
     0% {
