@@ -6,7 +6,8 @@ const Navbar = ({ user, setToken, setUser }) => {
   return (
     <>
       <div id="nav-one">
-        <input type="text" placeholder="Search.."></input>
+    
+        <input id ="search" type="text" placeholder="What can we help you find?..."></input>
 
         <div id="nav-one-right">
           <FontAwesomeIcon span id="cart" icon={faShoppingCart} />

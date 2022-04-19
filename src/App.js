@@ -1,19 +1,33 @@
+import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import { Meat, Home, Navbar } from "./components";
 import background from "./components/backdrop.png";
 
 const App = () => {
-  const backgroundStyle=`background-image: url(${background})`
+  const [meats, setMeat] = useState("");
+
+  const fetchMeat = async () => {
+    const resp = await fetch(`api/meats`);
+
+    const info = await resp.json();
+
+    setMeat(info);
+  };
+
+  useEffect(() => {
+    fetchMeat();
+  }, []);
+
   return (
     <>
-    <div style={backgroundStyle}></div>
+    {/* <div style={backgroundStyle}></div> */}
     <div id="container">
       <Navbar />
       <div id="main-section">
         <Routes>
           <Route exact path="/" element={<Home />} />
 
-          <Route exact path="/meat" element={<Meat />} />
+          <Route exact path="/meat" element={<Meat meats={meats} />} />
         </Routes>
       </div>
     </div>
