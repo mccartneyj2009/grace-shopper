@@ -162,7 +162,7 @@ async function createInitialMeats() {
       description:
         "Hunted by Buffalo Bill himself, Has been marinating for 100 years",
       flavor: "American",
-      // image: "buttered",
+      image: "buttered",
       weight: 20,
       price: 1000,
     });
