@@ -5,6 +5,7 @@ const Meat = ({ meats }) => {
 
       <div>
         {meats.map((meat) => {
+          console.log(meat);
           return (
             <div key={meat.id}>
               <h2>{meat.species}</h2>
