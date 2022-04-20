@@ -9,7 +9,7 @@ const Navbar = ({ user, setToken, setUser }) => {
                 <input type="text" placeholder="Search.."></input>
 
                 <div id="nav-one-right">
-                    <FontAwesomeIcon span id="cart" icon={faShoppingCart} />
+                    <FontAwesomeIcon id="cart" icon={faShoppingCart} />
 
                     <Link to="/login" className="linksolo">
                         Login/Register
