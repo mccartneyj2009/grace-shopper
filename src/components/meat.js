@@ -1,17 +1,34 @@
-const Meat = ({ meats, cow, gnarwall, bison }) => {
-  console.log(meats);
+import { useState } from "react";
+
+const Meat = ({ meats }) => {
+  const [species, setSpecies] = useState({});
+  const fetchMeatBySingleSpecies = async (species) => {
+    const resp = await fetch(`api/meats/species/${species}`);
+
+    const info = await resp.json();
+
+    setSpecies(info);
+  };
+
   return (
     <>
       <h1>We have the meats</h1>
-      <select name="meatlist" id="meatlist">
-        <option value="" Please Select Meat></option>
-        <option value="" Cow></option>
-        <option value="" Gnarwall></option>
-        <option value="" Bison></option>
+      <select
+        name="meatlist"
+        id="meatlist"
+        onChange={(e) => fetchMeatBySingleSpecies(species)}
+      >
+        <option value="">Please Select Meat</option>
+        {meats.map((meat) => {
+          return (
+            <option key={meat.id} value={meat.species}>
+              {meat.species}{" "}
+            </option>
+          );
+        })}
       </select>
       <div>
         {meats.map((meat) => {
-          console.log(meat);
           return (
             <div key={meat.id}>
               <h2>{meat.species}</h2>
