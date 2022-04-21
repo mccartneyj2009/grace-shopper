@@ -1,40 +1,71 @@
 import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 
-import { Meat, Home, Navbar } from "./components";
+import { Meat, Home, Navbar, Login, Register } from "./components";
 
 const App = () => {
-  const [meats, setMeat] = useState([]);
-  const [cow, setCow] = useState([]);
-  const [gnarwall, setGnarwall] = useState([]);
-  const [bison, setBison] = useState([]);
+    const [meats, setMeat] = useState("");
+    const [user, setUser] = useState("");
+    const [token, setToken] = useState("");
 
-  const fetchMeat = async () => {
-    const resp = await fetch(`api/meats`);
+    const fetchUser = async () => {
+        try {
+            const lstoken = localStorage.getItem("token");
+            if (lstoken) {
+                setToken(lstoken);
+            }
+            const resp = await fetch(`localhost:3001/api/users/login`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${lstoken}`,
+                },
+            });
 
-    const info = await resp.json();
+            const info = await resp.json();
 
-    setMeat(info);
-  };
+            if (info) {
+                setUser(info.user);
+            }
+            return info;
+        } catch (error) {
+            throw error;
+        }
+    };
 
-  useEffect(() => {
-    fetchMeat();
-  }, []);
-  return (
-    <div id="container">
-      <Navbar />
-      <div id="main-section">
-        <Routes>
-          <Route exact path="/" element={<Home />} />
+    const fetchMeat = async () => {
+        const resp = await fetch(`api/meats`);
 
-          <Route
-            exact
-            path="/meat"
-            element={<Meat meats={(meats, cow, gnarwall, bison)} />}
-          />
-        </Routes>
-      </div>
-    </div>
-  );
+        const info = await resp.json();
+
+        setMeat(info);
+    };
+
+    useEffect(() => {
+        // fetchUser();
+        // fetchMeat();
+    }, []);
+
+    return (
+        <div id="container">
+            <Navbar />
+            <div id="main-section">
+                <Routes>
+                    <Route exact path="/" element={<Home />} />
+
+                    <Route
+                        exact
+                        path="/meat"
+                        element={<Meat meats={meats} />}
+                    />
+                    <Route
+                        exact
+                        path="/login"
+                        element={<Login fetchUser={fetchUser} />}
+                    />
+                    <Route exact path="/register" element={<Register />} />
+                </Routes>
+            </div>
+        </div>
+    );
 };
 export default App;
