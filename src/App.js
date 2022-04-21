@@ -20,7 +20,6 @@ const App = () => {
   useEffect(() => {
     fetchMeat();
   }, []);
-
   return (
     <div id="container">
       <Navbar />
