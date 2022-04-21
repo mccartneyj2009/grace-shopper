@@ -1,38 +1,111 @@
-@import url('https://fonts.googleapis.com/css2?family=Meddon&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Wire+One&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Whisper&display=swap');
 
+
 * {
     font-family: monospace;
-
 }
+
+body {
+    height: 700px;
+    margin: 0px 0px 0px 0px;
+}
+
+.navBar {
+    position: relative;
+}
+
+.navBar button {
+    position: fixed;
+    left: 40px;
+    top: 40px;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.menuNav {
+    overflow-y: scroll;
+    list-style: none;
+    position: fixed;
+    top: 0;
+    background: darkcyan;
+    left: 0;
+    bottom: 0;
+    height: 100vh;
+    width: 0;
+    overflow: hidden;
+    max-width: 290px;
+    z-index: 9;
+}
+
+.menuNav.showMenu {
+    width: 100%;
+}
+
+a {
+    display: block;
+    padding: 10px 40px;
+    text-decoration: none;
+    color: #3fffd2;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.menuNav li:first-child {
+    margin-top: 7rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #nav-one {
     display: flex;
     background: transparent;
-    height: 75px;
+    height: 70px;
+    width: 100%;
     justify-content: space-between;
     align-items: center;
     position: sticky;
-    background-color: black;
-    padding-left: 10px;
+    background-color: brown;
+}
+
+#search {
+    width: 300px;
+    height: 25px;
+    margin-left: 10px;
 }
 
 #nav-one-right {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-
-}
-
-#nav-one-right>link {
-    color: wheat;
 }
 
 #cart {
     font-size: 20px;
     padding: 40px;
-    color: white;
+    color: beige;
 }
 
 #cart:hover {
@@ -48,37 +121,27 @@
     font-size: 30px;
     color: white;
     text-decoration: none;
-    padding-right: 10px;
+    padding-right: 40px;
 }
 
 #nav-two {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-
-}
-
-#search {
-    width: 300px;
-    height: 30px;
-}
-
-body {
-    height: 1500px;
+    height: 500px;
 }
 
 #logo {
-    height: 340px;
-    width: 340px;
+    height: 500px;
+    width: 500px;
 }
 
 #links {
     display: flex;
     justify-content: center;
-    margin-top: -70px;
+    margin-top: -80px;
 }
-
-
 
 .link {
     font-family: "Wire One";
@@ -86,17 +149,18 @@ body {
     color: black;
     text-decoration: none;
     padding: 50px;
+
 }
 
 .link:hover {
     transform: scale(1.05);
     background-color: transparent;
+    color: brown;
 }
 
 h1 {
     display: flex;
     justify-content: left;
-    /* font-family: 'Meddon'; */
     font-family: 'Whisper';
     font-size: 45px;
     color: black;
