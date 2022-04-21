@@ -26,7 +26,6 @@ const App = () => {
             if (info) {
                 setUser(info.user);
             }
-
             return info;
         } catch (error) {
             throw error;
