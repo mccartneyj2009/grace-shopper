@@ -7,17 +7,18 @@ async function createMeat({
   flavor,
   weight,
   price,
+  image,
 }) {
   try {
     const {
       rows: [user],
     } = await client.query(
       `
-      INSERT INTO meat(species,style,description,flavor,weight,price) 
-      VALUES($1, $2, $3, $4, $5, $6) 
+      INSERT INTO meat(species,style,description,flavor,weight,price,image) 
+      VALUES($1, $2, $3, $4, $5, $6,$7) 
       RETURNING *;
     `,
-      [species, style, description, flavor, weight, price]
+      [species, style, description, flavor, weight, price, image]
     );
 
     return user;
@@ -25,16 +26,30 @@ async function createMeat({
     throw error;
   }
 }
-async function updateMeat({ description, weight, price }) {
+async function updateMeat({ id, description, weight, price }) {
   try {
     const {
       rows: [meat],
     } = await client.query(
       `
-    UPDATE meat SET  description = ($1), weight = ($2), price = ($3) RETURNING *;`,
-      [description, weight, price]
+    UPDATE meat SET  description = ($1), weight = ($2), price = ($3) WHERE id =($4) RETURNING *;`,
+      [description, weight, price, id]
     );
-    console.log(meat);
+
+    return meat;
+  } catch (error) {
+    throw error;
+  }
+}
+async function deleteMeat(id) {
+  try {
+    const {
+      rows: [meat],
+    } = await client.query(
+      `
+      DELETE FROM meat WHERE id = $1`,
+      [id]
+    );
     return meat;
   } catch (error) {
     throw error;
@@ -57,11 +72,14 @@ async function getAllMeats() {
 
 async function getMeatById(meatId) {
   try {
-    const { rows } = await client.query(`
+    const {
+      rows: [meat],
+    } = await client.query(`
       SELECT id, species, description,style, flavor, price
       FROM meat
       WHERE id = ${meatId}`);
-    console.log(rows);
+    console.log(meat);
+    return meat;
   } catch (error) {
     throw error;
   }
@@ -137,11 +155,12 @@ async function getMeatBySingleSpecies(species) {
   }
 }
 
-getMeatBySingleSpecies("Bison");
 module.exports = {
   createMeat,
   updateMeat,
   getAllMeats,
+  getMeatById,
+  deleteMeat,
   getMeatByPrice,
   getMeatByStyle,
   getAllStyles,
