@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import background from "./components/backdrop.png";
 
-import { Meat, Home, Navbar, Login, Register } from "./components";
+import { Meat, Home, Navbar, Login, Register, Info } from "./components";
 
 const App = () => {
   const [meats, setMeat] = useState("");
@@ -15,7 +15,7 @@ const App = () => {
       if (lstoken) {
         setToken(lstoken);
       }
-      const resp = await fetch(`localhost:3001/api/users/login`, {
+      const resp = await fetch(`http://localhost:3001/api/users/login`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${lstoken}`,
@@ -34,7 +34,7 @@ const App = () => {
   };
 
   const fetchMeat = async () => {
-    const resp = await fetch(`api/meats`);
+    const resp = await fetch(`http://localhost:3001/api/meats`);
 
     const info = await resp.json();
 
@@ -42,7 +42,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    fetchUser();
+    // fetchUser();
     fetchMeat();
   }, []);
 
@@ -62,6 +62,7 @@ const App = () => {
               element={<Login fetchUser={fetchUser} />}
             />
             <Route exact path="/register" element={<Register />} />
+            <Route exact path="/info" element={<Info />} />
           </Routes>
         </div>
       </div>

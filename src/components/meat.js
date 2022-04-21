@@ -3,7 +3,9 @@ import { useState } from "react";
 const Meat = ({ meats }) => {
   const [species, setSpecies] = useState({});
   const fetchMeatBySingleSpecies = async (species) => {
-    const resp = await fetch(`api/meats/species/${species}`);
+    const resp = await fetch(
+      `http://localhost:3001/api/meats/species/${species}`
+    );
 
     const info = await resp.json();
 

@@ -6,8 +6,11 @@ const Navbar = ({ user, setToken, setUser }) => {
   return (
     <>
       <div id="nav-one">
-    
-        <input id ="search" type="text" placeholder="What can we help you find?..."></input>
+        <input
+          id="search"
+          type="text"
+          placeholder="What can we help you find?..."
+        ></input>
 
         <div id="nav-one-right">
           <FontAwesomeIcon id="cart" icon={faShoppingCart} />
@@ -33,7 +36,7 @@ const Navbar = ({ user, setToken, setUser }) => {
             Orders
           </Link>
 
-          <Link to="" className="link">
+          <Link to="/info" className="link">
             Info
           </Link>
           {user ? (
