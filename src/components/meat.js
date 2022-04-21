@@ -16,7 +16,7 @@ const Meat = ({ meats }) => {
       <select
         name="meatlist"
         id="meatlist"
-        onChange={(e) => fetchMeatBySingleSpecies(species)}
+        onChange={(e) => fetchMeatBySingleSpecies(e.target.value)}
       >
         <option value="">Please Select Meat</option>
         {meats.map((meat) => {
@@ -36,6 +36,7 @@ const Meat = ({ meats }) => {
               <p>{meat.image}</p>
               <p> {meat.description}</p>
               <p>{meat.price}</p>
+              <button type="submit">Add to Cart</button>
             </div>
           );
         })}
