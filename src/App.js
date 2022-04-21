@@ -4,64 +4,69 @@ import { Route, Routes } from "react-router-dom";
 import { Meat, Home, Navbar, Login, Register } from "./components";
 
 const App = () => {
-  const [meats, setMeat] = useState("");
-  const [user, setUser] = useState("");
-  const [token, setToken] = useState("");
+    const [meats, setMeat] = useState("");
+    const [user, setUser] = useState("");
+    const [token, setToken] = useState("");
 
-  const fetchUser = async () => {
-    try {
-      const lstoken = localStorage.getItem("token");
-      if (lstoken) {
-        setToken(lstoken);
-      }
-      const resp = await fetch(`localhost:3001/api/users/login`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${lstoken}`,
-        },
-      });
+    const fetchUser = async () => {
+        try {
+            const lstoken = localStorage.getItem("token");
+            if (lstoken) {
+                setToken(lstoken);
+            }
+            const resp = await fetch(`http://localhost:3001/api/users/login`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${lstoken}`,
+                },
+            });
 
-      const info = await resp.json();
+            const info = await resp.json();
 
-      if (info) {
-        setUser(info.user);
-      }
-      return info;
-    } catch (error) {
-      throw error;
-    }
-  };
+            if (info) {
+                setUser(info.user);
+            }
 
-  const fetchMeat = async () => {
-    const resp = await fetch(`api/meats`);
+            return info;
+        } catch (error) {
+            throw error;
+        }
+    };
 
-    const info = await resp.json();
+    const fetchMeat = async () => {
+        const resp = await fetch(`api/meats`);
 
-    setMeat(info);
-  };
+        const info = await resp.json();
 
-  useEffect(() => {
-    // fetchUser();
-    // fetchMeat();
-  }, []);
+        setMeat(info);
+    };
 
-  return (
-    <div id="container">
-      <Navbar />
-      <div id="main-section">
-        <Routes>
-          <Route exact path="/" element={<Home />} />
+    useEffect(() => {
+        // fetchUser();
+        // fetchMeat();
+    }, []);
 
-          <Route exact path="/meat" element={<Meat meats={meats} />} />
-          <Route
-            exact
-            path="/login"
-            element={<Login fetchUser={fetchUser} />}
-          />
-          <Route exact path="/register" element={<Register />} />
-        </Routes>
-      </div>
-    </div>
-  );
+    return (
+        <div id="container">
+            <Navbar />
+            <div id="main-section">
+                <Routes>
+                    <Route exact path="/" element={<Home />} />
+
+                    <Route
+                        exact
+                        path="/meat"
+                        element={<Meat meats={meats} />}
+                    />
+                    <Route
+                        exact
+                        path="/login"
+                        element={<Login fetchUser={fetchUser} />}
+                    />
+                    <Route exact path="/register" element={<Register />} />
+                </Routes>
+            </div>
+        </div>
+    );
 };
 export default App;
