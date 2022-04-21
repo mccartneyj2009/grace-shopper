@@ -1,62 +1,73 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
-import { useNavigate } from "react-router-dom";
+const Login = ({ fetchUser }) => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
 
-const Login = ({
-    username,
-    setUsername,
-    password,
-    setPassword,
-    token,
-    setToken,
-    error,
-    setError,
-  }) => {
-    const history = useNavigate();
-  
-    const handleLogin = async (event) => {
-      event.preventDefault();
-      try {
-        const response = await fetch(`${url}/users/login`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username,
-            password,
-          }),
-        });
-        const data = await response.json();
-        if (data.error) {
-          setError(data.error);
-          return;
+    const handleLoginUser = async (e) => {
+        console.log(email, password);
+        try {
+            const resp = await fetch(`api/users/login`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    email,
+                    password,
+                }),
+            });
+            const info = await resp.json();
+
+            localStorage.setItem("token", info.token);
+
+            if (info.error) {
+                setError(info.message);
+            }
+
+            fetchUser();
+        } catch (error) {
+            throw error;
         }
-        setToken(data.token);
-        localStorage.setItem("token", data.token);
-        history("/");
-      } catch (error) {
-        console.error(error);
-      }
     };
-  
+
     return (
-      <>
-        <form onSubmit={handleLogin}>
-          <input
-            required
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <input
-            type="password"
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button>Login!</button>
-        </form>
-        <p>{error}</p>
-      </>
+        <>
+            <form
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    handleLoginUser();
+                }}
+            >
+                <label htmlFor="email-address">Email</label>
+                <input
+                    onChange={(e) => {
+                        setEmail(e.target.value);
+                    }}
+                    required
+                    type="text"
+                    id="email-address"
+                    placeholder="user@email.com"
+                ></input>
+                <label htmlFor="password">Password</label>
+                <input
+                    onChange={(e) => {
+                        setPassword(e.target.value);
+                    }}
+                    required
+                    type="password"
+                    id="password"
+                    placeholder="Password"
+                ></input>
+                <button>Login</button>
+            </form>
+            <p>
+                No account? <Link to="/register">Register Here!</Link>
+            </p>
+        </>
     );
-  };
-        export default Login;
+};
+
+export default Login;

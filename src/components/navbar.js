@@ -10,9 +10,9 @@ const Navbar = ({ user, setToken, setUser }) => {
         <input id ="search" type="text" placeholder="What can we help you find?..."></input>
 
         <div id="nav-one-right">
-          <FontAwesomeIcon span id="cart" icon={faShoppingCart} />
+          <FontAwesomeIcon id="cart" icon={faShoppingCart} />
 
-          <Link to="/Register" className="linksolo">
+          <Link to="/login" className="linksolo">
             Login/Register
           </Link>
         </div>
