@@ -42,29 +42,29 @@ const App = () => {
   };
 
   useEffect(() => {
-    // fetchUser();
-    // fetchMeat();
+    fetchUser();
+    fetchMeat();
   }, []);
 
   return (
     <>
-    {/* <div style={backgroundStyle}></div> */}
-    <div id="container">
-      <Navbar />
-      <div id="main-section">
-        <Routes>
-          <Route exact path="/" element={<Home />} />
+      {/* <div style={backgroundStyle}></div> */}
+      <div id="container">
+        <Navbar />
+        <div id="main-section">
+          <Routes>
+            <Route exact path="/" element={<Home />} />
 
-          <Route exact path="/meat" element={<Meat meats={meats} />} />
-          <Route
-            exact
-            path="/login"
-            element={<Login fetchUser={fetchUser} />}
-          />
-          <Route exact path="/register" element={<Register />} />
-        </Routes>
+            <Route exact path="/meat" element={<Meat meats={meats} />} />
+            <Route
+              exact
+              path="/login"
+              element={<Login fetchUser={fetchUser} />}
+            />
+            <Route exact path="/register" element={<Register />} />
+          </Routes>
+        </div>
       </div>
-    </div>
     </>
   );
 };
