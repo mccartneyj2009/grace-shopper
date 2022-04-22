@@ -1,15 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Login = ({ fetchUser }) => {
+const Login = ({ setUser }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
 
-    const handleLoginUser = async (e) => {
-        console.log(email, password);
+    const handleLoginUser = async () => {
         try {
-            const resp = await fetch(`api/users/login`, {
+            const resp = await fetch(`http://localhost:3001/api/users/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -27,7 +26,8 @@ const Login = ({ fetchUser }) => {
                 setError(info.message);
             }
 
-            fetchUser();
+            console.log(info.user);
+            setUser(info.user);
         } catch (error) {
             throw error;
         }

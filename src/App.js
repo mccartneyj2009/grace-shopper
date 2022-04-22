@@ -5,16 +5,17 @@ import { Meat, Home, Navbar, Login, Register } from "./components";
 
 const App = () => {
     const [meats, setMeat] = useState("");
-    const [user, setUser] = useState("");
+    const [user, setUser] = useState({});
     const [token, setToken] = useState("");
 
     const fetchUser = async () => {
+        console.log("fetching user");
         try {
             const lstoken = localStorage.getItem("token");
             if (lstoken) {
                 setToken(lstoken);
             }
-            const resp = await fetch(`http://localhost:3001/api/users/login`, {
+            const resp = await fetch(`http://localhost:3001/api/users/me`, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${lstoken}`,
@@ -34,7 +35,7 @@ const App = () => {
     };
 
     const fetchMeat = async () => {
-        const resp = await fetch(`api/meats`);
+        const resp = await fetch(`http://localhost:3001/api/meats`);
 
         const info = await resp.json();
 
@@ -42,8 +43,8 @@ const App = () => {
     };
 
     useEffect(() => {
-        // fetchUser();
-        // fetchMeat();
+        fetchUser();
+        fetchMeat();
     }, []);
 
     return (
@@ -61,7 +62,7 @@ const App = () => {
                     <Route
                         exact
                         path="/login"
-                        element={<Login fetchUser={fetchUser} />}
+                        element={<Login setUser={setUser} />}
                     />
                     <Route exact path="/register" element={<Register />} />
                 </Routes>
