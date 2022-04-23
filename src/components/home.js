@@ -1,8 +1,11 @@
 const Home = () => {
     return (
+        
         <>
-            <h1>Welcome to Tony & The Bolognas</h1>
+            <button>Click Me</button>
+            
         </>
+       
     );
 };
 
