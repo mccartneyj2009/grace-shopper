@@ -4,8 +4,8 @@ import { Route, Routes } from "react-router-dom";
 import { Meat, Home, Navbar, Login, Register } from "./components";
 
 const App = () => {
-    const [meats, setMeat] = useState("");
-    const [user, setUser] = useState({});
+    const [meats, setMeat] = useState([]);
+    const [user, setUser] = useState("");
     const [token, setToken] = useState("");
 
     const fetchUser = async () => {
