@@ -11,83 +11,45 @@ body {
     margin: 0px 0px 0px 0px;
 }
 
-.navBar {
+.heroimage {
     position: relative;
-}
-
-.navBar button {
-    position: fixed;
-    left: 40px;
-    top: 40px;
-    z-index: 10;
-    cursor: pointer;
-}
-
-.menuNav {
-    overflow-y: scroll;
-    list-style: none;
-    position: fixed;
-    top: 0;
-    background: darkcyan;
-    left: 0;
-    bottom: 0;
+    width: 100vw;
     height: 100vh;
-    width: 0;
-    overflow: hidden;
-    max-width: 290px;
-    z-index: 9;
 }
 
-.menuNav.showMenu {
+.heroimage::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-}
-
-a {
-    display: block;
-    padding: 10px 40px;
-    text-decoration: none;
-    color: #3fffd2;
-    text-transform: uppercase;
-    font-weight: bold;
-}
-
-.menuNav li:first-child {
-    margin-top: 7rem;
+    height: 100%;
+    background: url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/d501d2104111071.5f5b8b6fcef22.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    /* filter: brightness(60%); */
 }
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+button {
+    width: 150px;
+}
 
 
 
 #nav-one {
     display: flex;
     background: transparent;
-    height: 70px;
+    height: 90px;
     width: 100%;
     justify-content: space-between;
     align-items: center;
     position: sticky;
     background-color: brown;
+    border-bottom: 4px solid white;
 }
 
 #search {
@@ -119,6 +81,7 @@ a {
 .linksolo {
     font-family: "Wire One";
     font-size: 30px;
+    font-weight: bolder;
     color: white;
     text-decoration: none;
     padding-right: 40px;
@@ -129,26 +92,35 @@ a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 500px;
+    height: 70px;
+    width: 100%;
+    background: transparent;
+    /* justify-content: space-between; */
+    align-items: center;
+    position: sticky;
+    background-color: black;
+
+
 }
 
 #logo {
-    height: 500px;
-    width: 500px;
+    box-shadow: 1px 5px 20px 1px;
+    margin-left: 30px;
 }
 
 #links {
     display: flex;
     justify-content: center;
-    margin-top: -80px;
+    align-items: center;
+    /* margin-top: -80px; */
 }
 
 .link {
     font-family: "Wire One";
     font-size: 50px;
-    color: black;
+    color: white;
     text-decoration: none;
-    padding: 50px;
+    padding: 75px;
 
 }
 

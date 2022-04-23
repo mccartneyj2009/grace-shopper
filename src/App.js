@@ -1,14 +1,35 @@
 import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import { Meat, Home, Navbar} from "./components";
+import { Meat, Home, Navbar, Login, Register } from "./components";
 
 const App = () => {
-  const [token, setToken] = useState("");
-  const [user, setUser] = useState(null);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirm, setConfirm] = useState("");
   const [meats, setMeat] = useState("");
+  const [user, setUser] = useState("");
+  const [token, setToken] = useState("");
+
+  const fetchUser = async () => {
+    try {
+      const lstoken = localStorage.getItem("token");
+      if (lstoken) {
+        setToken(lstoken);
+      }
+      const resp = await fetch(`localhost:3001/api/users/login`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${lstoken}`,
+        },
+      });
+
+      const info = await resp.json();
+
+      if (info) {
+        setUser(info.user);
+      }
+      return info;
+    } catch (error) {
+      throw error;
+    }
+  };
 
   const fetchMeat = async () => {
     const resp = await fetch(`api/meats`);
@@ -19,7 +40,8 @@ const App = () => {
   };
 
   useEffect(() => {
-    fetchMeat();
+     fetchUser();
+     fetchMeat();
   }, []);
 
   return (
@@ -33,40 +55,12 @@ const App = () => {
           <Route exact path="/" element={<Home />} />
 
           <Route exact path="/meat" element={<Meat meats={meats} />} />
-          {/* <Route
+          <Route
             exact
-            element={
-              <Login
-                token={token}
-                setToken={setToken}
-                username={username}
-                setUsername={setUsername}
-                password={password}
-                setPassword={setPassword}
-                error={error}
-                setError={setError}
-              />
-            }
-            path="/Login"
-            />
-             <Route
-            exact
-            element={
-              <Register
-                token={token}
-                setToken={setToken}
-                username={username}
-                setUsername={setUsername}
-                password={password}
-                setPassword={setPassword}
-                confirm={confirm}
-                setConfirm={setConfirm}
-                error={error}
-                setError={setError}
-              />
-            }
-            path="/Register"
-          /> */}
+            path="/login"
+            element={<Login fetchUser={fetchUser} />}
+          />
+          <Route exact path="/register" element={<Register />} />
         </Routes>
       </div>
     </div>

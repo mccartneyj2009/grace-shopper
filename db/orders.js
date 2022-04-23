@@ -49,12 +49,15 @@ async function getOrdersByUserId(userId) {
 }
 
 async function getOrdersByFulfilled() {
+  console.log("something");
   try {
     const { rows } = await client.query(
       `
           SELECT * FROM orders
-          WHERE fulfilled = true`
+          WHERE fulfilled = true
+          ;`
     );
+    console.log(rows, "rows");
     return rows;
   } catch (error) {
     throw error;
