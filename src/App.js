@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 
-import { Meat, Home, Navbar, Login, Register } from "./components";
+import { Meat, Home, Navbar, Login, Register, Info } from "./components";
 
 const App = () => {
     const [meats, setMeat] = useState([]);
@@ -65,6 +65,7 @@ const App = () => {
                         element={<Login setUser={setUser} />}
                     />
                     <Route exact path="/register" element={<Register />} />
+                    <Route exact path="/info" element={<Info />} />
                 </Routes>
             </div>
         </div>

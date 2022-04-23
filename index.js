@@ -14,7 +14,6 @@ app.use(cors());
 
 const { getUserById } = require("./db");
 app.use(async (req, res, next) => {
-    console.log(req.headers.authorization);
     if (!req.headers.authorization) {
         return next();
     }
@@ -25,6 +24,8 @@ app.use(async (req, res, next) => {
     }
     const user = await getUserById(_user.id);
     req.user = user;
+    console.log(req.headers.authorization);
+
     next();
 });
 app.use("/api", apiRouter);
