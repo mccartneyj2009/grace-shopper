@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import background from "./components/backdrop.png";
 
 import { Meat, Home, Navbar, Login, Register } from "./components";
 
