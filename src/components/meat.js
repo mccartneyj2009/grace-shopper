@@ -26,6 +26,7 @@ const Meat = ({ meats }) => {
   }
   return (
     <>
+    
       <h1>We have the meats</h1>
       <select
         name="meatlist"
@@ -41,10 +42,10 @@ const Meat = ({ meats }) => {
           );
         })}
       </select>
-      <div>
+      <div className="meat">
         {selected.map((meat) => {
           return (
-            <div key={meat.id}>
+            <div id="meattype" key={meat.id}>
               <h2>{meat.species}</h2>
 
               <p>{meat.image}</p>
@@ -55,6 +56,7 @@ const Meat = ({ meats }) => {
           );
         })}
       </div>
+    
     </>
   );
 };

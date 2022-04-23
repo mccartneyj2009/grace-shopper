@@ -1,18 +1,20 @@
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { faShoppingCart, faUser } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = ({ user, setToken, setUser }) => {
   return (
     <> 
-    <section className="heroimage">
+    
       <div id="nav-one">
 
       <img id="logo" src={require("./title.png")} /> 
-        {/* <input id ="search" type="text" placeholder="What can we help you find?..."></input> */}
+        
         
         <div id="nav-one-right">
+        <FontAwesomeIcon id="user" icon={faUser} />
           <FontAwesomeIcon id="cart" icon={faShoppingCart} />
+          
 
           <Link to="/login" className="linksolo">
             Login/Register
@@ -35,7 +37,7 @@ const Navbar = ({ user, setToken, setUser }) => {
           </Link>
 
           <Link to="/info" className="link">
-            Info
+            About Us
           </Link>
           {user ? (
             <>
@@ -56,7 +58,7 @@ const Navbar = ({ user, setToken, setUser }) => {
           )}
         </div>
       </div>
-      </section>
+     
     </>
   );
 };

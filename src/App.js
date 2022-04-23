@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
-
 import { Meat, Home, Navbar, Login, Register, Info } from "./components";
 
 const App = () => {
   const [meats, setMeat] = useState([]);
   const [user, setUser] = useState("");
   const [token, setToken] = useState("");
+
+  
 
   const fetchUser = async () => {
     try {
@@ -47,7 +48,7 @@ const App = () => {
 
   return (
     <>
-      {/* <div style={backgroundStyle}></div> */}
+     
       <div id="container">
         <Navbar />
         <div id="main-section">
