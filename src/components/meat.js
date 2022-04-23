@@ -1,24 +1,30 @@
 import { useEffect, useState } from "react";
 
 const Meat = ({ meats }) => {
-  const [species, setSpecies] = useState({});
-  const [selected, setSelected] = useState([]);
-  const fetchMeatBySingleSpecies = async (species) => {
-    const resp = await fetch(
-      `http://localhost:3001/api/meats/species/${species}`
-    );
+    const [species, setSpecies] = useState({});
+    const [selected, setSelected] = useState([]);
+    const fetchMeatBySingleSpecies = async (species) => {
+        const resp = await fetch(
+            `http://localhost:3001/api/meats/species/${species}`
+        );
 
-    const info = await resp.json();
+        const info = await resp.json();
 
-    setSpecies(info);
-  };
+        setSpecies(info);
+    };
 
-  useEffect(() => {
-    let selectedMeats = meats.filter((meat) => meat.species === species);
-    if (!selectedMeats.length) {
-      setSelected(meats);
-      return;
+    useEffect(() => {
+        let selectedMeats = meats.filter((meat) => meat.species === species);
+        if (!selectedMeats.length) {
+            setSelected(meats);
+            return;
+        }
+        setSelected(selectedMeats);
+    }, [species, meats]);
+    if (!meats.length) {
+        return <></>;
     }
+
     setSelected(selectedMeats);
   }, [species, meats]);
   if (!meats.length) {
@@ -48,17 +54,18 @@ const Meat = ({ meats }) => {
             <div id="meattype" key={meat.id}>
               <h2>{meat.species}</h2>
 
-              <p>{meat.image}</p>
-              <p> {meat.description}</p>
-              <p>{meat.price}</p>
-              <button type="submit">Add to Cart</button>
+
+                            <p>{meat.image}</p>
+                            <p> {meat.description}</p>
+                            <p>{meat.price}</p>
+                            <button type="submit">Add to Cart</button>
+                        </div>
+                    );
+                })}
             </div>
-          );
-        })}
-      </div>
-    
-    </>
-  );
+
+        </>
+    );
 };
 
 export default Meat;
