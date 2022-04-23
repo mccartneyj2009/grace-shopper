@@ -1,63 +1,55 @@
-<<<<<<< HEAD
-@import url("https://fonts.googleapis.com/css2?family=Meddon&display=swap");
-=======
->>>>>>> 11466762192445ab56d884255259af5fe94e7000
 @import url("https://fonts.googleapis.com/css2?family=Wire+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Whisper&display=swap");
 
-
 * {
-<<<<<<< HEAD
   font-family: monospace;
-=======
-    font-family: monospace;
->>>>>>> 11466762192445ab56d884255259af5fe94e7000
 }
 
 body {
-    height: 700px;
-    margin: 0px 0px 0px 0px;
+  height: 700px;
+  margin: 0px 0px 0px 0px;
 }
 
 .heroimage {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
 }
 
 .heroimage::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/d501d2104111071.5f5b8b6fcef22.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-    /* filter: brightness(60%); */
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/d501d2104111071.5f5b8b6fcef22.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  /* filter: brightness(60%); */
 }
-
-
-
 
 button {
-    width: 150px;
+  width: 150px;
 }
 
-
-
 #nav-one {
-<<<<<<< HEAD
   display: flex;
   background: transparent;
-  height: 75px;
+  height: 90px;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
   position: sticky;
-  background-color: black;
-  padding-left: 10px;
+  background-color: brown;
+  border-bottom: 4px solid white;
+}
+
+#search {
+  width: 300px;
+  height: 25px;
+  margin-left: 10px;
 }
 
 #nav-one-right {
@@ -66,43 +58,10 @@ button {
   justify-content: flex-end;
 }
 
-#nav-one-right > link {
-  color: wheat;
-}
-
 #cart {
   font-size: 20px;
   padding: 40px;
-  color: white;
-=======
-    display: flex;
-    background: transparent;
-    height: 90px;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    background-color: brown;
-    border-bottom: 4px solid white;
-}
-
-#search {
-    width: 300px;
-    height: 25px;
-    margin-left: 10px;
-}
-
-#nav-one-right {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-}
-
-#cart {
-    font-size: 20px;
-    padding: 40px;
-    color: beige;
->>>>>>> 11466762192445ab56d884255259af5fe94e7000
+  color: beige;
 }
 
 #cart:hover {
@@ -114,126 +73,61 @@ button {
 }
 
 .linksolo {
-<<<<<<< HEAD
   font-family: "Wire One";
   font-size: 30px;
+  font-weight: bolder;
   color: white;
   text-decoration: none;
-  padding-right: 10px;
+  padding-right: 40px;
 }
 
 #nav-two {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-}
-
-#search {
-  width: 300px;
-  height: 30px;
-}
-
-body {
-  height: 1500px;
+  height: 70px;
+  width: 100%;
+  background: transparent;
+  /* justify-content: space-between; */
+  align-items: center;
+  position: sticky;
+  background-color: black;
 }
 
 #logo {
-  height: 340px;
-  width: 340px;
+  box-shadow: 1px 5px 20px 1px;
+  margin-left: 30px;
 }
 
 #links {
   display: flex;
   justify-content: center;
-  margin-top: -70px;
+  align-items: center;
+  /* margin-top: -80px; */
 }
 
 .link {
   font-family: "Wire One";
   font-size: 50px;
-  color: black;
+  color: white;
   text-decoration: none;
-  padding: 50px;
+  padding: 75px;
 }
 
 .link:hover {
   transform: scale(1.05);
   background-color: transparent;
+  color: brown;
 }
 
 h1 {
   display: flex;
-  justify-content: center;
-  /* font-family: 'Meddon'; */
+  justify-content: left;
   font-family: "Whisper";
   font-size: 45px;
   color: black;
   padding-left: 15px;
-=======
-    font-family: "Wire One";
-    font-size: 30px;
-    font-weight: bolder;
-    color: white;
-    text-decoration: none;
-    padding-right: 40px;
-}
-
-#nav-two {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 70px;
-    width: 100%;
-    background: transparent;
-    /* justify-content: space-between; */
-    align-items: center;
-    position: sticky;
-    background-color: black;
-
-
-}
-
-#logo {
-    box-shadow: 1px 5px 20px 1px;
-    margin-left: 30px;
-}
-
-#links {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* margin-top: -80px; */
-}
-
-.link {
-    font-family: "Wire One";
-    font-size: 50px;
-    color: white;
-    text-decoration: none;
-    padding: 75px;
-
-}
-
-.link:hover {
-    transform: scale(1.05);
-    background-color: transparent;
-    color: brown;
-}
-
-h1 {
-    display: flex;
-    justify-content: left;
-    font-family: 'Whisper';
-    font-size: 45px;
-    color: black;
-    padding-left: 15px;
->>>>>>> 11466762192445ab56d884255259af5fe94e7000
-}
-
-p {
-  display: flex;
-  justify-content: center;
 }
 
 @keyframes shake {

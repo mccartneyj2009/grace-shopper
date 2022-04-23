@@ -47,7 +47,7 @@ const Meat = ({ meats }) => {
             <div key={meat.id}>
               <h2>{meat.species}</h2>
 
-              <p>{meat.image}</p>
+              <img className="meatpic" src={meat.image} />
               <p> {meat.description}</p>
               <p>{meat.price}</p>
               <button type="submit">Add to Cart</button>
