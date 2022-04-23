@@ -5,7 +5,7 @@ import background from "./components/backdrop.png";
 import { Meat, Home, Navbar, Login, Register, Info } from "./components";
 
 const App = () => {
-  const [meats, setMeat] = useState("");
+  const [meats, setMeat] = useState([]);
   const [user, setUser] = useState("");
   const [token, setToken] = useState("");
 
@@ -62,7 +62,10 @@ const App = () => {
               element={<Login fetchUser={fetchUser} />}
             />
             <Route exact path="/register" element={<Register />} />
+<<<<<<< HEAD
             <Route exact path="/info" element={<Info />} />
+=======
+>>>>>>> 11466762192445ab56d884255259af5fe94e7000
           </Routes>
         </div>
       </div>
