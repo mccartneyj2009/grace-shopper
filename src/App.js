@@ -8,6 +8,7 @@ const App = () => {
     const [user, setUser] = useState({});
     const [token, setToken] = useState("");
 
+
     const fetchUser = async () => {
         try {
             const lstoken = localStorage.getItem("token");

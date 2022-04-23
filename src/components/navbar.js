@@ -1,17 +1,22 @@
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { faShoppingCart, faUser } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = ({ user, setToken, setUser }) => {
-    const lstoken = localStorage.getItem("token");
 
-    return (
-        <>
-            <section className="heroimage">
-                <div id="nav-one">
-                    <img id="logo" src={require("./title.png")} />
-                    {/* <input id ="search" type="text" placeholder="What can we help you find?..."></input> */}
+  const lstoken = localStorage.getItem("token");
+  
+  return (
+    <> 
+    
+      <div id="nav-one">
 
+      <img id="logo" src={require("./title.png")} /> 
+        
+        
+        <div id="nav-one-right">
+        <FontAwesomeIcon id="user" icon={faUser} />
+          <FontAwesomeIcon id="cart" icon={faShoppingCart} />
                     <div id="nav-one-right">
                         <FontAwesomeIcon id="cart" icon={faShoppingCart} />
                         {!lstoken ? (
@@ -45,6 +50,7 @@ const Navbar = ({ user, setToken, setUser }) => {
                             Meats
                         </Link>
 
+
                         <Link to="" className="link">
                             Orders
                         </Link>
@@ -72,7 +78,6 @@ const Navbar = ({ user, setToken, setUser }) => {
                         )}
                     </div>
                 </div>
-            </section>
         </>
     );
 };

@@ -24,28 +24,36 @@ const Meat = ({ meats }) => {
     if (!meats.length) {
         return <></>;
     }
-    return (
-        <>
-            <h1>We have the meats</h1>
-            <select
-                name="meatlist"
-                id="meatlist"
-                onChange={(e) => setSpecies(e.target.value)}
-            >
-                <option value="">Please Select Meat</option>
-                {meats.map((meat) => {
-                    return (
-                        <option key={meat.id} value={meat.species}>
-                            {meat.species}{" "}
-                        </option>
-                    );
-                })}
-            </select>
-            <div>
-                {selected.map((meat) => {
-                    return (
-                        <div key={meat.id}>
-                            <h2>{meat.species}</h2>
+
+    setSelected(selectedMeats);
+  }, [species, meats]);
+  if (!meats.length) {
+    return <></>;
+  }
+  return (
+    <>
+    
+      <h1>We have the meats</h1>
+      <select
+        name="meatlist"
+        id="meatlist"
+        onChange={(e) => setSpecies(e.target.value)}
+      >
+        <option value="">Please Select Meat</option>
+        {meats.map((meat) => {
+          return (
+            <option key={meat.id} value={meat.species}>
+              {meat.species}{" "}
+            </option>
+          );
+        })}
+      </select>
+      <div className="meat">
+        {selected.map((meat) => {
+          return (
+            <div id="meattype" key={meat.id}>
+              <h2>{meat.species}</h2>
+
 
                             <p>{meat.image}</p>
                             <p> {meat.description}</p>
@@ -55,6 +63,7 @@ const Meat = ({ meats }) => {
                     );
                 })}
             </div>
+
         </>
     );
 };
