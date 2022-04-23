@@ -7,6 +7,7 @@ const Navbar = ({ user, setToken, setUser }) => {
     <> 
     <section className="heroimage">
       <div id="nav-one">
+
       <img id="logo" src={require("./title.png")} /> 
         {/* <input id ="search" type="text" placeholder="What can we help you find?..."></input> */}
         
@@ -33,7 +34,7 @@ const Navbar = ({ user, setToken, setUser }) => {
             Orders
           </Link>
 
-          <Link to="" className="link">
+          <Link to="/info" className="link">
             Info
           </Link>
           {user ? (
