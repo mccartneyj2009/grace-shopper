@@ -3,20 +3,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart, faUser } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = ({ user, setToken, setUser }) => {
+    const lstoken = localStorage.getItem("token");
 
-  const lstoken = localStorage.getItem("token");
-  
-  return (
-    <> 
-    
-      <div id="nav-one">
+    return (
+        <>
+            <div id="nav-one">
+                <img id="logo" src={require("./title.png")} />
 
-      <img id="logo" src={require("./title.png")} /> 
-        
-        
-        <div id="nav-one-right">
-        <FontAwesomeIcon id="user" icon={faUser} />
-          <FontAwesomeIcon id="cart" icon={faShoppingCart} />
+                <div id="nav-one-right">
+                    <FontAwesomeIcon id="user" icon={faUser} />
+                    <FontAwesomeIcon id="cart" icon={faShoppingCart} />
                     <div id="nav-one-right">
                         <FontAwesomeIcon id="cart" icon={faShoppingCart} />
                         {!lstoken ? (
@@ -50,7 +46,6 @@ const Navbar = ({ user, setToken, setUser }) => {
                             Meats
                         </Link>
 
-
                         <Link to="" className="link">
                             Orders
                         </Link>
@@ -78,6 +73,7 @@ const Navbar = ({ user, setToken, setUser }) => {
                         )}
                     </div>
                 </div>
+            </div>
         </>
     );
 };
