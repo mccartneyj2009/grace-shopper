@@ -47,8 +47,7 @@ const Meat = ({ meats }) => {
                     return (
                         <div id="meattype" key={meat.id}>
                             <h2>{meat.species}</h2>
-
-                            <p>{meat.image}</p>
+                            <img src={meat.image} />
                             <p> {meat.description}</p>
                             <p>{meat.price}</p>
                             <button type="submit">Add to Cart</button>
