@@ -12,7 +12,7 @@ const Info = () => {
       <h1>The Backstory</h1>
       <p>
         The fake company's roots can be traced back to as early as April 2022
-        when four dude were paired into a group together and forced to pick a
+        when four dudes were paired into a group together and forced to pick a
         topic for their capstone project. Their first goal was to pick a group
         name. Naturally, the only appropriate name was Tony and the Bolognas.
         The group then needed to decide on a product to sell online while
