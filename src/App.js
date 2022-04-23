@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
+import background from "./components/backdrop.png";
+
 import { Meat, Home, Navbar, Login, Register } from "./components";
 
 const App = () => {
-  const [meats, setMeat] = useState("");
+  const [meats, setMeat] = useState([]);
   const [user, setUser] = useState("");
   const [token, setToken] = useState("");
 
@@ -32,7 +34,7 @@ const App = () => {
   };
 
   const fetchMeat = async () => {
-    const resp = await fetch(`api/meats`);
+    const resp = await fetch(`http://localhost:3001/api/meats`);
 
     const info = await resp.json();
 
@@ -40,30 +42,29 @@ const App = () => {
   };
 
   useEffect(() => {
-     fetchUser();
-     fetchMeat();
+    // fetchUser();
+    fetchMeat();
   }, []);
 
   return (
     <>
-  
-    <div id="container">
-      <Navbar />
-      
-      <div id="main-section">
-        <Routes>
-          <Route exact path="/" element={<Home />} />
+      {/* <div style={backgroundStyle}></div> */}
+      <div id="container">
+        <Navbar />
+        <div id="main-section">
+          <Routes>
+            <Route exact path="/" element={<Home />} />
 
-          <Route exact path="/meat" element={<Meat meats={meats} />} />
-          <Route
-            exact
-            path="/login"
-            element={<Login fetchUser={fetchUser} />}
-          />
-          <Route exact path="/register" element={<Register />} />
-        </Routes>
+            <Route exact path="/meat" element={<Meat meats={meats} />} />
+            <Route
+              exact
+              path="/login"
+              element={<Login fetchUser={fetchUser} />}
+            />
+            <Route exact path="/register" element={<Register />} />
+          </Routes>
+        </div>
       </div>
-    </div>
     </>
   );
 };
