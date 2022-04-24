@@ -59,26 +59,14 @@ usersRouter.post("/login", async (req, res, next) => {
 
 usersRouter.post("/register", async (req, res, next) => {
     const { email, password, first_name, last_name } = req.body;
+    const user = await getUserByEmail(email);
+
+    if (user) {
+        res.send({ error: "User already exists." });
+        return;
+    }
 
     try {
-        const user = await getUserByEmail(email);
-
-        if (user) {
-            next({
-                name: "user exists",
-                error: "user exists",
-            });
-            return;
-        }
-
-        if (password.length < 6) {
-            next({
-                name: "passwordLengthError",
-                error: "Password must be at least 6 characters long.",
-            });
-            return;
-        }
-
         const newUser = await createUser({
             email,
             password,
@@ -86,7 +74,14 @@ usersRouter.post("/register", async (req, res, next) => {
             last_name,
         });
 
-        res.send({ user: newUser });
+        const token = jwt.sign(
+            {
+                email: newUser.email,
+                id: newUser.id,
+            },
+            process.env.JWT_SECRET
+        );
+        res.send({ newUser, token });
     } catch (error) {
         next(error);
     }

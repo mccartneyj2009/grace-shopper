@@ -8,7 +8,6 @@ const App = () => {
     const [user, setUser] = useState({});
     const [token, setToken] = useState("");
 
-
     const fetchUser = async () => {
         try {
             const lstoken = localStorage.getItem("token");
@@ -66,7 +65,11 @@ const App = () => {
                         path="/login"
                         element={<Login user={user} setUser={setUser} />}
                     />
-                    <Route exact path="/register" element={<Register />} />
+                    <Route
+                        exact
+                        path="/register"
+                        element={<Register user={user} setUser={setUser} />}
+                    />
                     <Route exact path="/info" element={<Info />} />
                 </Routes>
             </div>
