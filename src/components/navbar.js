@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = ({ user, setToken, setUser }) => {
+  const lstoken = localStorage.getItem("token");
+
   return (
     <>
       <section className="heroimage">
@@ -12,10 +14,24 @@ const Navbar = ({ user, setToken, setUser }) => {
 
           <div id="nav-one-right">
             <FontAwesomeIcon id="cart" icon={faShoppingCart} />
+            {!lstoken ? (
+              <Link to="/login" className="linksolo">
+                Login/Register
+              </Link>
+            ) : (
+              <Link
+                to="/"
+                className="linksolo"
+                onClick={() => {
+                  localStorage.removeItem("token");
 
-            <Link to="/login" className="linksolo">
-              Login/Register
-            </Link>
+                  setToken("");
+                  setUser({});
+                }}
+              >
+                Logout
+              </Link>
+            )}
           </div>
         </div>
         <div id="nav-two">
@@ -36,15 +52,16 @@ const Navbar = ({ user, setToken, setUser }) => {
             <Link to="/info" className="link">
               Info
             </Link>
-            {user ? (
+            {lstoken ? (
               <>
                 <Link
                   className="link"
                   to="/"
                   onClick={() => {
-                    setToken("");
-                    setUser(null);
                     localStorage.removeItem("token");
+
+                    setToken("");
+                    setUser({});
                   }}
                 >
                   Logout
