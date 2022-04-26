@@ -34,8 +34,6 @@ const Meat = ({ meats, tempCart, setTempCart }) => {
         setSelected(selectedMeats);
     }, [species, meats]);
 
-    console.log(tempCart);
-
     if (!meats.length) {
         return <></>;
     }
