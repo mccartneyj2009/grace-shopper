@@ -12,17 +12,53 @@ const Navbar = ({ user, setToken, setUser }) => {
 
                 <div id="nav-one-right">
                     <FontAwesomeIcon id="user" icon={faUser} />
-                    <FontAwesomeIcon id="cart" icon={faShoppingCart} />
-                    <div id="nav-one-right">
+
+                    <Link to="/cart">
                         <FontAwesomeIcon id="cart" icon={faShoppingCart} />
-                        {!lstoken ? (
-                            <Link to="/login" className="linksolo">
-                                Login/Register
-                            </Link>
-                        ) : (
+                    </Link>
+                    {!lstoken ? (
+                        <Link to="/login" className="linksolo">
+                            Login/Register
+                        </Link>
+                    ) : (
+                        <Link
+                            to="/"
+                            className="linksolo"
+                            onClick={() => {
+                                localStorage.removeItem("token");
+
+                                setToken("");
+                                setUser({});
+                            }}
+                        >
+                            Logout
+                        </Link>
+                    )}
+                </div>
+            </div>
+            <div id="nav-two">
+                {/* <img id="logo" src={require("./three.png")} />  */}
+                <div id="links">
+                    <Link to="/" className="link">
+                        Home
+                    </Link>
+
+                    <Link to="/meat" className="link">
+                        Meats
+                    </Link>
+
+                    <Link to="/cart" className="link">
+                        Cart
+                    </Link>
+
+                    <Link to="/info" className="link">
+                        Info
+                    </Link>
+                    {lstoken ? (
+                        <>
                             <Link
+                                className="link"
                                 to="/"
-                                className="linksolo"
                                 onClick={() => {
                                     localStorage.removeItem("token");
 
@@ -32,46 +68,10 @@ const Navbar = ({ user, setToken, setUser }) => {
                             >
                                 Logout
                             </Link>
-                        )}
-                    </div>
-                </div>
-                <div id="nav-two">
-                    {/* <img id="logo" src={require("./three.png")} />  */}
-                    <div id="links">
-                        <Link to="/" className="link">
-                            Home
-                        </Link>
-
-                        <Link to="/meat" className="link">
-                            Meats
-                        </Link>
-
-                        <Link to="" className="link">
-                            Orders
-                        </Link>
-
-                        <Link to="/info" className="link">
-                            Info
-                        </Link>
-                        {lstoken ? (
-                            <>
-                                <Link
-                                    className="link"
-                                    to="/"
-                                    onClick={() => {
-                                        localStorage.removeItem("token");
-
-                                        setToken("");
-                                        setUser({});
-                                    }}
-                                >
-                                    Logout
-                                </Link>
-                            </>
-                        ) : (
-                            <></>
-                        )}
-                    </div>
+                        </>
+                    ) : (
+                        <></>
+                    )}
                 </div>
             </div>
         </>

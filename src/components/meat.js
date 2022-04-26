@@ -1,8 +1,13 @@
 import { useEffect, useState } from "react";
 
-const Meat = ({ meats }) => {
+const Meat = ({ meats, tempCart, setTempCart }) => {
     const [species, setSpecies] = useState({});
     const [selected, setSelected] = useState([]);
+
+    const lstoken = localStorage.getItem("token");
+    const meatsDropDownList = [];
+    const weightQuantity = [0.5, 1, 2, 3, 4, 5, 10];
+
     const fetchMeatBySingleSpecies = async (species) => {
         const resp = await fetch(
             `http://localhost:3001/api/meats/species/${species}`
@@ -13,6 +18,13 @@ const Meat = ({ meats }) => {
         setSpecies(info);
     };
 
+    meats.forEach((meat) => {
+        let meatIndex = meatsDropDownList.indexOf(meat.species);
+        if (meatIndex < 0) {
+            meatsDropDownList.push(meat.species);
+        }
+    });
+
     useEffect(() => {
         let selectedMeats = meats.filter((meat) => meat.species === species);
         if (!selectedMeats.length) {
@@ -21,6 +33,9 @@ const Meat = ({ meats }) => {
         }
         setSelected(selectedMeats);
     }, [species, meats]);
+
+    console.log(tempCart);
+
     if (!meats.length) {
         return <></>;
     }
@@ -34,10 +49,10 @@ const Meat = ({ meats }) => {
                 onChange={(e) => setSpecies(e.target.value)}
             >
                 <option value="">Please Select Meat</option>
-                {meats.map((meat) => {
+                {meatsDropDownList.map((meat) => {
                     return (
-                        <option key={meat.id} value={meat.species}>
-                            {meat.species}{" "}
+                        <option key={meat} value={meat}>
+                            {meat}{" "}
                         </option>
                     );
                 })}
@@ -47,10 +62,51 @@ const Meat = ({ meats }) => {
                     return (
                         <div id="meattype" key={meat.id}>
                             <h2>{meat.species}</h2>
-                            <img src={meat.image} />
-                            <p> {meat.description}</p>
-                            <p>{meat.price}</p>
-                            <button type="submit">Add to Cart</button>
+                            <img className="meat-image" src={meat.image} />
+                            <p>
+                                <b>Flavor: </b>
+                                {meat.flavor}
+                            </p>
+                            <p>
+                                <b>Style: </b>
+                                {meat.style}
+                            </p>
+                            <p>
+                                <b>Description: </b> {meat.description}
+                            </p>
+                            <p>
+                                <b>Price: </b>${meat.price}/lb
+                            </p>
+                            <label htmlFor="meat-qty">
+                                <b>Quantity: </b>
+                            </label>
+                            <select
+                                id="meat-qty"
+                                onChange={(e) => {
+                                    meat.weight = e.target.value;
+                                }}
+                            >
+                                {weightQuantity.map((weight) => {
+                                    {
+                                        /* meat.weight = weightQuantity[0]; */
+                                    }
+                                    return (
+                                        <option key={weight}>{weight}</option>
+                                    );
+                                })}
+                            </select>
+                            <button
+                                type="submit"
+                                onClick={() => {
+                                    if (!meat.weight) {
+                                        meat.weight =
+                                            weightQuantity[0].toString();
+                                    }
+                                    setTempCart([...tempCart, meat]);
+                                }}
+                            >
+                                Add to Cart
+                            </button>
                         </div>
                     );
                 })}
