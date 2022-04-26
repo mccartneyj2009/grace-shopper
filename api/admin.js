@@ -1,13 +1,13 @@
-// function adminRequired(req, res, next) {
-//   console.log(req.user.amininistrator);
-//   if (!req.user.amininistrator === true) {
-//     next({
-//       name: "Unqualified",
-//       message: "You cannot do this",
-//     });
-//   }
-//   next();
-// }
+function adminRequired(req, res, next) {
+  console.log(req.user.amininistrator);
+  if (!req.user.amininistrator === true) {
+    next({
+      name: "Unqualified",
+      message: "You cannot do this",
+    });
+  }
+  next();
+}
 
 // module.exports = {
 //   adminRequired,
@@ -22,4 +22,6 @@ adminRouter.use((req, res, next) => {
   next();
 });
 
-module.exports = adminRouter;
+adminRouter.delete("/meats/:meatId");
+
+module.exports = { adminRouter, adminRequired };
