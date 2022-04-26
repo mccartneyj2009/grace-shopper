@@ -10,7 +10,7 @@ const {
   getMeatById,
   deleteMeat,
 } = require("../db");
-const { adminRequired } = require("./admin");
+const adminRequired = require("./utils");
 const meatsRouter = express.Router();
 
 meatsRouter.use((req, res, next) => {

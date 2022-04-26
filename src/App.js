@@ -47,36 +47,29 @@ const App = () => {
     fetchUser();
     fetchMeat();
   }, []);
-  if (user.administrator === true) {
-    return (
-      <>
-        <h1>hello super user</h1>
-      </>
-    );
-  } else {
-    return (
-      <div id="container">
-        <Navbar user={user} />
-        <div id="main-section">
-          <Routes>
-            <Route exact path="/" element={<Home />} />
 
-            <Route exact path="/meat" element={<Meat meats={meats} />} />
-            <Route
-              exact
-              path="/login"
-              element={<Login user={user} setUser={setUser} />}
-            />
-            <Route
-              exact
-              path="/register"
-              element={<Register user={user} setUser={setUser} />}
-            />
-            <Route exact path="/info" element={<Info />} />
-          </Routes>
-        </div>
+  return (
+    <div id="container">
+      <Navbar user={user} />
+      <div id="main-section">
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+
+          <Route exact path="/meat" element={<Meat meats={meats} />} />
+          <Route
+            exact
+            path="/login"
+            element={<Login user={user} setUser={setUser} />}
+          />
+          <Route
+            exact
+            path="/register"
+            element={<Register user={user} setUser={setUser} />}
+          />
+          <Route exact path="/info" element={<Info />} />
+        </Routes>
       </div>
-    );
-  }
+    </div>
+  );
 };
 export default App;
