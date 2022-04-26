@@ -9,10 +9,6 @@ function adminRequired(req, res, next) {
   next();
 }
 
-// module.exports = {
-//   adminRequired,
-// };
-
 const express = require("express");
 
 const adminRouter = express.Router();
@@ -21,7 +17,5 @@ adminRouter.use((req, res, next) => {
   console.log("Requesting Admin");
   next();
 });
-
-adminRouter.delete("/meats/:meatId");
 
 module.exports = { adminRouter, adminRequired };
