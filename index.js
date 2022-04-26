@@ -35,6 +35,13 @@ app.use("/api", apiRouter);
 //   res.sendFile(__dirname + "/build/index.html");
 // });
 
+app.use((err, req, res, next) => {
+    res.status(400).send({
+        name: err.name,
+        message: err.message,
+    });
+});
+
 app.listen(PORT, () => {
     console.log("Server is up on port: " + PORT);
     client.connect();

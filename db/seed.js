@@ -41,7 +41,6 @@ async function createTables() {
         description VARCHAR(255),
         flavor varchar (255) NOT NULL,
         image TEXT,
-        weight DECIMAL NOT NULL,
         price DECIMAL NOT NULL
         );
         
@@ -144,7 +143,6 @@ async function createInitialMeats() {
       flavor: "plain",
       image:
         "https://images.unsplash.com/photo-1613985208269-e8f4dbcc7576?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1052&q=80",
-      weight: 1,
       price: 5,
     });
 
@@ -155,7 +153,6 @@ async function createInitialMeats() {
       flavor: "Juicy",
       image:
         "https://cdn.stocksnap.io/img-thumbs/960w/steak-fries_RQOP43KKJV.jpg",
-      weight: 1,
       price: 5,
     });
     await createMeat({
@@ -166,7 +163,6 @@ async function createInitialMeats() {
       flavor: "delicious",
       image:
         "https://cdn.pixabay.com/photo/2021/09/16/04/31/animal-6628302_1280.png",
-      weight: 0.25,
       price: 700,
     });
     await createMeat({
@@ -177,7 +173,6 @@ async function createInitialMeats() {
       flavor: "American",
       image:
         "https://cdn.stocksnap.io/img-thumbs/960w/meat-beef_U8E3HKTZF9.jpg",
-      weight: 20,
       price: 1000,
     });
     await createMeat({
@@ -187,7 +182,6 @@ async function createInitialMeats() {
       flavor: "Tender",
       image:
         "https://cdn.stocksnap.io/img-thumbs/960w/grilled-chicken_34LMASJHCT.jpg",
-      weight: 2,
       price: 9,
     });
     await createMeat({
@@ -197,7 +191,6 @@ async function createInitialMeats() {
       flavor: "Spicy",
       image:
         "https://images.unsplash.com/photo-1567620832903-9fc6debc209f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1080&q=80",
-      weight: 2,
       price: 9,
     });
     await createMeat({
@@ -207,7 +200,6 @@ async function createInitialMeats() {
         "Perfect for Thanksgiving, this bird will make you the talk of the holiday",
       flavor: "Juicy",
       image: "https://stocksnap.io/photo/grilled-chicken-34LMASJHCT",
-      weight: 1,
       price: 8,
     });
     await createMeat({
@@ -217,7 +209,6 @@ async function createInitialMeats() {
       flavor: "Tender",
       image:
         "https://images.unsplash.com/photo-1606728035253-49e8a23146de?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
-      weight: 1,
       price: 8,
     });
     await createMeat({
@@ -227,7 +218,6 @@ async function createInitialMeats() {
       flavor: "Thick",
       image:
         "https://images.unsplash.com/photo-1606851682837-019baf2e8da4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
-      weight: 1,
       price: 8,
     });
     await createMeat({
@@ -237,7 +227,6 @@ async function createInitialMeats() {
       flavor: "Tender",
       image:
         "https://images.unsplash.com/photo-1432139555190-58524dae6a55?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2076&q=80",
-      weight: 3,
       price: 16,
     });
     await createMeat({
@@ -247,7 +236,6 @@ async function createInitialMeats() {
       flavor: "Fresh",
       image:
         "https://images.unsplash.com/photo-1585325701172-fcb7d019242d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1034&q=80",
-      weight: 3,
       price: 16,
     });
     await createMeat({
@@ -257,7 +245,6 @@ async function createInitialMeats() {
       flavor: "Blackened",
       image:
         "https://images.unsplash.com/photo-1580959375944-abd7e991f971?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80",
-      weight: 2,
       price: 20,
     });
   } catch (error) {

@@ -1,24 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Wire+One&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Whisper&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nova+Mono&display=swap");
 
 * {
   font-family: monospace;
+  box-sizing: border-box;
 }
 
 body {
-  height: 700px;
-  margin: 0px 0px 0px 0px;
-}
-
-.heroimage {
   position: relative;
   width: 100vw;
   height: 100vh;
-}
-
-.heroimage::before {
+  margin: 0px 0px 0px 0px;
   content: "";
-  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -27,7 +20,6 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  /* filter: brightness(60%); */
 }
 
 button {
@@ -46,12 +38,6 @@ button {
   border-bottom: 4px solid white;
 }
 
-#search {
-  width: 300px;
-  height: 25px;
-  margin-left: 10px;
-}
-
 #nav-one-right {
   display: flex;
   align-items: center;
@@ -60,7 +46,7 @@ button {
 
 #cart {
   font-size: 20px;
-  padding: 40px;
+  padding-right: 80px;
   color: beige;
 }
 
@@ -70,6 +56,12 @@ button {
 
 #cart:active {
   transform: translate(0px, 5px, 5px);
+}
+
+#user {
+  font-size: 20px;
+  padding-right: 20px;
+  color: beige;
 }
 
 .linksolo {
@@ -89,7 +81,6 @@ button {
   height: 70px;
   width: 100%;
   background: transparent;
-  /* justify-content: space-between; */
   align-items: center;
   position: sticky;
   background-color: black;
@@ -102,9 +93,10 @@ button {
 
 #links {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
-  /* margin-top: -80px; */
+  height: 70px;
+  width: 100%;
 }
 
 .link {
@@ -112,7 +104,8 @@ button {
   font-size: 50px;
   color: white;
   text-decoration: none;
-  padding: 75px;
+  /* padding: 75px; */
+  height: 70px;
 }
 
 .link:hover {
@@ -121,18 +114,47 @@ button {
   color: brown;
 }
 
+.meat {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: whitesmoke;
+  opacity: 0.8;
+  width: 500px;
+  border: 2px solid white;
+  border-radius: 2%;
+}
+
+#meattype {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.meat-image {
+  width: 250px;
+}
+
 h1 {
   display: flex;
   justify-content: left;
-  font-family: "Whisper";
-  font-size: 45px;
-  color: black;
+  font-family: "Nova Mono";
+  font-size: 55px;
+  color: white;
+  padding-left: 15px;
+}
+
+h2 {
+  display: flex;
+  justify-content: left;
+  color: maroon;
   padding-left: 15px;
 }
 
 p {
-  display: flex;
-  justify-content: center;
+  color: black;
 }
 
 @keyframes shake {
