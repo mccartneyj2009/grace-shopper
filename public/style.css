@@ -4,6 +4,7 @@
 
 * {
   font-family: monospace;
+  box-sizing: border-box;
 }
 
 body {
@@ -95,8 +96,10 @@ button {
 
 #links {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
+  height: 70px;
+  width: 100%;
 }
 
 .link {
@@ -104,8 +107,8 @@ button {
   font-size: 50px;
   color: white;
   text-decoration: none;
-  padding: 75px;
-
+  /* padding: 75px; */
+  height: 70px;
 }
 
 .link:hover {
@@ -131,6 +134,10 @@ button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.meat-image {
+  width: 250px;
 }
 
 h1 {
