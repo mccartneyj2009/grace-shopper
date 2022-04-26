@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
-
 import { Meat, Home, Navbar, Login, Register, Info } from "./components";
 
 const App = () => {
@@ -70,7 +69,7 @@ const App = () => {
                     <Route exact path="/info" element={<Info />} />
                 </Routes>
             </div>
-        </div>
+         </div>
     );
 };
 export default App;

@@ -47,6 +47,7 @@ const Login = ({ user, setUser }) => {
 
     return (
         <>
+        <div className="login">
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
@@ -81,6 +82,7 @@ const Login = ({ user, setUser }) => {
             <p>
                 No account? <Link to="/register">Register Here!</Link>
             </p>
+            </div>
         </>
     );
 };

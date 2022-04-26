@@ -1,16 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Wire+One&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Nova+Mono&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Water+Brush&display=swap');
 
 * {
   font-family: monospace;
 }
 
 body {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  margin: 0px 0px 0px 0px;
+  /* position: relative;
+  width: 100%; */
+  /* height: 100vh; */
+  /* margin: 0px 0px 0px 0px;
   content: "";
   top: 0;
   left: 0;
@@ -19,22 +20,34 @@ body {
   background: url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/d501d2104111071.5f5b8b6fcef22.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center center;
+  background-position: center center; */
+  background-color: black;
+
 }
 
-button {
-  width: 150px;
+#container {
+  height: 1600px;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-position: center center;
+  background-size: cover;
+  background: url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/d501d2104111071.5f5b8b6fcef22.jpg);
+  background-attachment: fixed;
+}
+
+#main-section {
+  display: flex;
+  justify-content: center;
 }
 
 #nav-one {
-
   display: flex;
   background: transparent;
   height: 90px;
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  position: sticky;
   background-color: brown;
   border-bottom: 4px solid white;
 }
@@ -43,6 +56,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  background-attachment: fixed;
 }
 
 #cart {
@@ -77,14 +91,14 @@ button {
 
 #nav-two {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   height: 70px;
   width: 100%;
   background: transparent;
   align-items: center;
-  position: sticky;
+  /* position: fixed; */
   background-color: black;
 }
 
@@ -114,16 +128,37 @@ button {
   color: brown;
 }
 
-.meat {
+#intro {
+
+  height: fit-content;
+  margin-top: 100px;
+}
+
+#intro h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #e1b893;
+  font-family: 'Water Brush';
+  font-size: 85px;
+  font-weight: bolder;
+  text-shadow: 2px 2px black;
+  margin-top: 100px;
+}
+
+.meatpage {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: whitesmoke;
-  opacity: 0.8;
-  width: 500px;
+  opacity: 0.9;
+  width: 60%;
   border: 2px solid white;
   border-radius: 2%;
+  margin-top: 100px;
+  margin-bottom: 50px;
+  padding: 0px 10px 25px 10px;
 }
 
 #meattype {
@@ -135,25 +170,74 @@ button {
 
 h1 {
   display: flex;
-  justify-content: left;
-  font-family: 'Nova Mono';
-  font-size: 55px;
-  color: white;
+  justify-content: center;
+  font-family: 'Bungee Shade';
+  font-size: 65px;
+  color: black;
+  text-shadow: 2px 1px #e1b893;
   padding-left: 15px;
+
 
 }
 
 h2 {
   display: flex;
   justify-content: left;
+  font-family: 'Wire One';
   color: maroon;
-  padding-left: 15px;
+  font-size: 50px;
+  margin-top: 120px;
+  margin-bottom: -20px;
 }
 
 p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: black;
 }
 
+select {
+  height: 30px;
+  color: black;
+  background-color: white;
+  opacity: 1;
+  box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+    6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+    12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+    22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+    41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
+    100px 100px 80px rgba(0, 0, 0, 0.07);
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin-top: 100px;
+  background-color: whitesmoke;
+  opacity: 0.7;
+
+}
+
+#aboutus {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: whitesmoke;
+  opacity: 0.9;
+  width: 65%;
+  height: auto;
+  margin-top: 100px;
+  margin-bottom: 50px;
+  padding: 0px 10px 25px 10px;
+}
+
+#aboutus p {
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+}
 
 
 @keyframes shake {
@@ -200,4 +284,58 @@ p {
   100% {
     transform: translate(1px, -2px) rotate(-1deg);
   }
+}
+
+button {
+  border: none;
+  display: block;
+  position: relative;
+  padding: 0.7em 2.4em;
+  font-size: 18px;
+  background: transparent;
+  cursor: pointer;
+  user-select: none;
+  overflow: hidden;
+  color: maroon;
+  z-index: 1;
+  font-family: inherit;
+  font-weight: 500;
+}
+
+button span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: -1;
+  border: 4px solid maroon;
+}
+
+button span::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 8%;
+  height: 500%;
+  background: var(--lightgray);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-60deg);
+  transition: all 0.3s;
+}
+
+button:hover span::before {
+  transform: translate(-50%, -50%) rotate(-90deg);
+  width: 100%;
+  background: maroon;
+}
+
+button:hover {
+  color: white;
+}
+
+button:active span::before {
+  background: maroon;
 }
