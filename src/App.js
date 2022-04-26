@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
+<<<<<<< HEAD
 
 import { Meat, Home, Navbar, Login, Register, Info, Cart } from "./components";
+=======
+import { Meat, Home, Navbar, Login, Register, Info } from "./components";
+>>>>>>> d906b84aa1431eec0958edb99c01a39700db34ad
 
 const App = () => {
     const [meats, setMeat] = useState([]);
@@ -89,7 +93,7 @@ const App = () => {
                     <Route exact path="/info" element={<Info />} />
                 </Routes>
             </div>
-        </div>
+         </div>
     );
 };
 export default App;
