@@ -20,11 +20,9 @@ const Home = ({ user }) => {
   if (user)
     return (
       <>
-        <p>Users</p>
-
-        {/* {allUsers.map((users) => {
-          return <h1>{users.email}</h1>;
-        })} */}
+        <div id="intro">
+          <h1>When you're with Tony, youre with Family</h1>
+        </div>
       </>
     );
 };

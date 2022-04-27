@@ -77,25 +77,5 @@ const Navbar = ({ user, setToken, setUser }) => {
         </>
     );
 };
-// import React, { useState } from "react";
-
-// const Navbar = ({  }) => {
-
-// const [navbarOpen, setNavbarOpen] = useState(false)
-// const handleToggle = () => {
-//     setNavbarOpen(!navbarOpen)
-//   }
-//   const closeMenu = () => {
-//     setNavbarOpen(false)
-//   }
-// return (
-//     <nav className="navBar">
-//       <button onClick={handleToggle}>{navbarOpen ? "Close" : "Open"}</button>
-//       <ul className={`menuNav ${navbarOpen ? " showMenu" : ""}`}>Home</ul>
-//       <ul className={`menuNav ${navbarOpen ? " showMenu" : ""}`}>Meats</ul>
-//       <ul className={`menuNav ${navbarOpen ? " showMenu" : ""}`}>Orders</ul>
-//       <ul className={`menuNav ${navbarOpen ? " showMenu" : ""}`}>Info</ul>
-//     </nav>
-//   )}
 
 export default Navbar;

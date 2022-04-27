@@ -41,46 +41,44 @@ const Login = ({ user, setUser }) => {
     }
   };
 
-  if (lstoken) {
-    return <Navigate replace to="/" />;
-  }
-
   return (
     <>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleLoginUser();
-        }}
-      >
-        <label htmlFor="email-address">Email</label>
-        <input
-          onChange={(e) => {
-            setEmail(e.target.value);
+      <div className="login">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleLoginUser();
           }}
-          value={email}
-          required
-          type="text"
-          id="email-address"
-          placeholder="user@email.com"
-        ></input>
-        <label htmlFor="password">Password</label>
-        <input
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-          value={password}
-          required
-          type="password"
-          id="password"
-          placeholder="Password"
-        ></input>
-        <button>Login</button>
-      </form>
-      <p>{error}</p>
-      <p>
-        No account? <Link to="/register">Register Here!</Link>
-      </p>
+        >
+          <label htmlFor="email-address">Email</label>
+          <input
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+            value={email}
+            required
+            type="text"
+            id="email-address"
+            placeholder="user@email.com"
+          ></input>
+          <label htmlFor="password">Password</label>
+          <input
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+            value={password}
+            required
+            type="password"
+            id="password"
+            placeholder="Password"
+          ></input>
+          <button>Login</button>
+        </form>
+        <p>{error}</p>
+        <p>
+          No account? <Link to="/register">Register Here!</Link>
+        </p>
+      </div>
     </>
   );
 };

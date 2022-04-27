@@ -3,6 +3,7 @@ import { useState } from "react";
 const Info = () => {
   return (
     <>
+    <div id="aboutus">
       <h1>About Us</h1>
       <p>
         This site was created as a Fullstack Academy project by a group of dude
@@ -25,6 +26,7 @@ const Info = () => {
         Thus, the group Tony and the Bolognas began their project to sell meat
         online.
       </p>
+      </div>
     </>
   );
 };

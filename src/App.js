@@ -8,6 +8,7 @@ const App = () => {
   const [user, setUser] = useState({});
   const [token, setToken] = useState("");
   const [tempCart, setTempCart] = useState([]);
+  const [admin, setAdmin] = useState(false);
 
   const fetchUser = async () => {
     try {
@@ -28,6 +29,11 @@ const App = () => {
         if (info) {
           setUser(info.user);
         }
+
+        if (info.administrator) {
+          setAdmin(true);
+        }
+
         return info;
       }
     } catch (error) {
@@ -60,10 +66,10 @@ const App = () => {
             path="/meat"
             element={
               <Meat
+                admin={admin}
                 meats={meats}
                 tempCart={tempCart}
                 setTempCart={setTempCart}
-                user={user}
               />
             }
           />
