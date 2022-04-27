@@ -150,6 +150,11 @@ body {
   padding-bottom: 20px;
 }
 
+.meatpage h1 {
+  background-color: black;
+  /* opacity: 0.8; */
+
+}
 
 .meattype {
   align-content: center;
