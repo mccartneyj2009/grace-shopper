@@ -4,8 +4,11 @@ const Cart = ({ tempCart, setTempCart }) => {
     console.log(tempCart);
 
     //filter cart so that if there are multiple of the same item it adds the qty together and only returns 1 of said item
-    const [cart, setCart] = useState([]);
-    const cartArr = tempCart;
+
+    // want to be able to modify the quantity when its in the cart.
+
+    const cartArr = [...tempCart];
+    const weightQuantity = [0.5, 1, 2, 3, 4, 5, 10];
 
     let cartTotal = 0;
     tempCart.forEach((item) => {
@@ -30,7 +33,20 @@ const Cart = ({ tempCart, setTempCart }) => {
                         </p>
                         <p>
                             <b>Quantity: </b>
-                            {item.weight} lbs
+                            <select
+                                defaultValue={item.weight}
+                                onChange={(e) => {
+                                    let index = cartArr.indexOf(item);
+                                    cartArr[index].weight = e.target.value;
+                                    setTempCart(cartArr);
+                                }}
+                            >
+                                {weightQuantity.map((weight) => {
+                                    return (
+                                        <option key={weight}>{weight}</option>
+                                    );
+                                })}
+                            </select>
                         </p>
                         <p>
                             <b>Total for item: </b>$
@@ -38,9 +54,9 @@ const Cart = ({ tempCart, setTempCart }) => {
                         </p>
                         <button
                             onClick={() => {
-                                let index = tempCart.indexOf(item);
-                                tempCart.pop(index);
-                                setTempCart(tempCart);
+                                let index = cartArr.indexOf(item);
+                                cartArr.splice(index, 1);
+                                setTempCart(cartArr);
                             }}
                         >
                             Remove Meat
@@ -50,6 +66,17 @@ const Cart = ({ tempCart, setTempCart }) => {
             })}
 
             <h3>Cart Total: ${cartTotal.toFixed(2)}</h3>
+            {cartArr.length ? (
+                <button
+                    onClick={() => {
+                        console.log("submitting order");
+                    }}
+                >
+                    Submit Order
+                </button>
+            ) : (
+                <button disabled>Submit Order</button>
+            )}
         </div>
     );
 };
