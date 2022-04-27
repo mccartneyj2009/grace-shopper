@@ -78,5 +78,4 @@ const Navbar = ({ user, setToken, setUser }) => {
     );
 };
 
-
 export default Navbar;

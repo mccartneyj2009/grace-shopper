@@ -34,89 +34,101 @@ const Meat = ({ meats, tempCart, setTempCart }) => {
         setSelected(selectedMeats);
     }, [species, meats]);
 
-    console.log(tempCart);
-
     if (!meats.length) {
         return <></>;
     }
 
     return (
         <>
-        <div className="meatpage">
-            <h1>We have the meats</h1>
-            <select
-                name="meatlist"
-                id="meatlist"
-                onChange={(e) => setSpecies(e.target.value)}
-            >
-                <option value="">Please Select Meat</option>
-                {meatsDropDownList.map((meat) => {
-                    return (
-                        <option key={meat} value={meat}>
-                            {meat}{" "}
-                        </option>
-                    );
-                })}
-            </select>
-            <div className="meats">
-                {selected.map((meat) => {
-                    return (
-                        <div className="meattype" key={meat.id}>
-                            <h2>{meat.species}</h2>
-                            <img className="meat-image" src={meat.image} />
-                            <p>
-                                <b>Flavor: </b>
-                                {meat.flavor}
-                            </p>
-                            <p>
-                                <b>Style: </b>
-                                {meat.style}
-                            </p>
-                            <p>
-                                <b>Description: </b> {meat.description}
-                            </p>
-                            <p>
-                                <b>Price: </b>${meat.price}/lb
-                            </p>
-                            <div className="meat-qty">
-                            <label htmlFor="meat-qty">
-                                <b>Quantity: </b>
-                            </label>
-                            
-                            <select
-                                onChange={(e) => {
-                                    meat.weight = e.target.value;
-                                }}
-                            >
-                                {weightQuantity.map((weight) => {
-                                    {
-                                        /* meat.weight = weightQuantity[0]; */
-                                    }
-                                    return (
-                                        <option key={weight}>{weight}</option>
-                                    );
-                                })}
-                            </select>
+            <div className="meatpage">
+                <h1>We have the meats</h1>
+                <select
+                    name="meatlist"
+                    id="meatlist"
+                    onChange={(e) => setSpecies(e.target.value)}
+                >
+                    <option value="">Please Select Meat</option>
+                    {meatsDropDownList.map((meat) => {
+                        return (
+                            <option key={meat} value={meat}>
+                                {meat}{" "}
+                            </option>
+                        );
+                    })}
+                </select>
+                
+                    {selected.map((meat) => {
+                        return (
+                            <div className="meat">
+                            <div className="meattype" key={meat.id}>
+                                <h2>{meat.species}</h2>
+                                <img className="meat-image" src={meat.image} />
+                                </div>
+                                <div className="meatsright">
+                                <p>
+                                    <b>Flavor: </b>
+                                    {meat.flavor}
+                                </p>
+                                <p>
+                                    <b>Style: </b>
+                                    {meat.style}
+                                </p>
+                                <p>
+                                    <b>Description: </b> {meat.description}
+                                </p>
+                                <p>
+                                    <b>Price: </b>${meat.price}/lb
+                                </p>
+                                
+                                <div className="meat-qty">
+                                <label htmlFor="meat-qty">
+                                    <b>Quantity: </b>
+                                </label>
+                                <select
+                                    
+                                    onChange={(e) => {
+                                        meat.weight = e.target.value;
+                                    }}
+                                >
+                                    {weightQuantity.map((weight) => {
+                                        return (
+                                            <option key={weight}>
+                                                {weight}
+                                            </option>
+                                        );
+                                    })}
+                                </select>
+                                </div>
+                                {lstoken ? (
+                                    <button
+                                        onClick={() => {
+                                            console.log("logged in user");
+                                        }}
+                                    >
+                                        Add to Cart
+                                        
+                                    </button>
+                                ) : (
+                                    <button
+                                        type="submit"
+                                        onClick={() => {
+                                            if (!meat.weight) {
+                                                meat.weight =
+                                                    weightQuantity[0].toString();
+                                            }
+                                            setTempCart([...tempCart, meat]);
+                                        }}
+                                    >
+                                        Add to Cart
+                                       
+                                    </button>
+                                )}
                             </div>
-                            <button
-                                type="submit"
-                                onClick={() => {
-                                    if (!meat.weight) {
-                                        meat.weight =
-                                            weightQuantity[0].toString();
-                                    }
-                                    setTempCart([...tempCart, meat]);
-                                }}
-                            >
-                                Add to Cart
-                                <span></span>
-                            </button>
-                        </div>
-                        
-                    );
-                })}
-            </div>
-            </div>
+                            </div>
+                        );
+                    })}
+                </div>
+            
         </>
     );
 };
