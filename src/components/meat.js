@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Meat = ({ admin, meats, tempCart, setTempCart }) => {
   const [species, setSpecies] = useState({});
@@ -24,7 +25,11 @@ const Meat = ({ admin, meats, tempCart, setTempCart }) => {
       meatsDropDownList.push(meat.species);
     }
   });
-
+  // const deleteUserMeat = async () => {
+  //   await fetch(`http://localchost3001/api/meats/:meat_id`, {
+  //     method: "DELETE",
+  //   });
+  // };
   const deleteMeat = async () => {
     await fetch(`http://localhost3001/api/meats/:meatId`, {
       method: "DELETE",
@@ -48,6 +53,13 @@ const Meat = ({ admin, meats, tempCart, setTempCart }) => {
     <>
       <div className="meatpage">
         <h1>We have the meats</h1>
+        {admin ? (
+          <Link to="./addMeat">
+            <button>Add Meats</button>
+          </Link>
+        ) : (
+          <div></div>
+        )}
         <select
           name="meatlist"
           id="meatlist"
@@ -108,6 +120,7 @@ const Meat = ({ admin, meats, tempCart, setTempCart }) => {
                     {admin ? (
                       <button
                         onClick={(e) => {
+                          deleteUserMeat(e.target.value);
                           deleteMeat(e.target.value);
                         }}
                       >

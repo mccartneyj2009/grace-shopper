@@ -29,6 +29,16 @@ meatsRouter.get("/", async (req, res) => {
   }
 });
 
+// meatsRouter.get("/:meatId", async (req, res, next) => {
+//   try {
+//     console.log(req.params);
+//     const meat = await getMeatById(req.params.meats);
+//     res.send(meat);
+//   } catch (error) {
+//     next(error);
+//   }
+// });
+
 meatsRouter.get("/styles", async (req, res, next) => {
   try {
     const styles = await getAllStyles();
@@ -67,16 +77,16 @@ meatsRouter.get("/species/:type", async (req, res, next) => {
 
 //-----Post Routes-----//
 
-meatsRouter.post("/", async (req, res, next) => {
-  const { species, style, description, flavor, weight, price } = req.body;
-
+meatsRouter.post("/addMeat", async (req, res, next) => {
+  const { species, style, description, image, flavor, price } = req.body;
+  console.log(req.body);
   try {
     const newMeat = await createMeat({
       species,
       style,
       description,
       flavor,
-      weight,
+      image,
       price,
     });
     if (newMeat) {
@@ -97,7 +107,7 @@ meatsRouter.patch("/:meatId", async (req, res, next) => {
     const newMeat = await updateMeat({
       id: meatId,
       description,
-      weight,
+
       price,
     });
 
@@ -115,6 +125,16 @@ meatsRouter.delete("/:meatId", async (req, res, next) => {
     const { meatId } = req.params;
 
     const meatDelete = await deleteMeat(meatId);
+    res.send(meatDelete);
+  } catch (error) {
+    next(error);
+  }
+});
+
+meatsRouter.delete("/:meat_id", async (req, res, next) => {
+  try {
+    const { meat_id } = req.params;
+    const meatDelete = await deleteMeat(meat_id);
     res.send(meatDelete);
   } catch (error) {
     next(error);

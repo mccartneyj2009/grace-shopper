@@ -1,7 +1,16 @@
 import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 
-import { Meat, Home, Navbar, Login, Register, Info, Cart } from "./components";
+import {
+  Meat,
+  Home,
+  Navbar,
+  Login,
+  Register,
+  Info,
+  Cart,
+  AddMeat,
+} from "./components";
 
 const App = () => {
   const [meats, setMeat] = useState([]);
@@ -68,6 +77,7 @@ const App = () => {
               <Meat
                 admin={admin}
                 meats={meats}
+                setMeat={setMeat}
                 tempCart={tempCart}
                 setTempCart={setTempCart}
               />
@@ -89,6 +99,12 @@ const App = () => {
             element={<Cart tempCart={tempCart} setTempCart={setTempCart} />}
           />
           <Route exact path="/info" element={<Info />} />
+
+          <Route
+            exact
+            path="meat/addMeat"
+            element={<AddMeat user={user} admin={admin} setMeat={setMeat} />}
+          />
         </Routes>
       </div>
     </div>
