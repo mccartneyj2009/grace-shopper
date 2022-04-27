@@ -35,6 +35,7 @@ usersRouter.get("/me", async (req, res, next) => {
 
 usersRouter.post("/login", async (req, res, next) => {
   const { email, password } = req.body;
+
   try {
     const user = await getUser({ email, password });
 

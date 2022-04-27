@@ -53,7 +53,7 @@ const App = () => {
       <Navbar user={user} />
       <div id="main-section">
         <Routes>
-          <Route exact path="/" element={<Home />} />
+          <Route exact path="/" element={<Home user={user} />} />
 
           <Route
             exact
@@ -63,6 +63,7 @@ const App = () => {
                 meats={meats}
                 tempCart={tempCart}
                 setTempCart={setTempCart}
+                user={user}
               />
             }
           />
