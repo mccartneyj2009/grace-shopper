@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const Meat = ({ meats, tempCart, setTempCart }) => {
+const Meat = ({ admin, meats, tempCart, setTempCart }) => {
     const [species, setSpecies] = useState({});
     const [selected, setSelected] = useState([]);
 
@@ -8,15 +8,15 @@ const Meat = ({ meats, tempCart, setTempCart }) => {
     const meatsDropDownList = [];
     const weightQuantity = [0.5, 1, 2, 3, 4, 5, 10];
 
-    const fetchMeatBySingleSpecies = async (species) => {
-        const resp = await fetch(
-            `http://localhost:3001/api/meats/species/${species}`
-        );
+    // const fetchMeatBySingleSpecies = async (species) => {
+    //     const resp = await fetch(
+    //         `http://localhost:3001/api/meats/species/${species}`
+    //     );
 
-        const info = await resp.json();
+    //     const info = await resp.json();
 
-        setSpecies(info);
-    };
+    //     setSpecies(info);
+    // };
 
     meats.forEach((meat) => {
         let meatIndex = meatsDropDownList.indexOf(meat.species);
@@ -32,7 +32,7 @@ const Meat = ({ meats, tempCart, setTempCart }) => {
             return;
         }
         setSelected(selectedMeats);
-    }, [species, meats]);
+    }, [species, meats, admin]);
 
     if (!meats.length) {
         return <></>;
@@ -94,14 +94,21 @@ const Meat = ({ meats, tempCart, setTempCart }) => {
                                     })}
                                 </select>
                                 {lstoken ? (
-                                    <button
-                                        onClick={() => {
-                                            console.log("logged in user");
-                                        }}
-                                    >
-                                        Add to Cart
-                                        <span></span>
-                                    </button>
+                                    <>
+                                        <button
+                                            onClick={() => {
+                                                console.log("logged in user");
+                                            }}
+                                        >
+                                            Add to Cart
+                                            <span></span>
+                                        </button>
+                                        {admin ? (
+                                            <button>Delete</button>
+                                        ) : (
+                                            <div></div>
+                                        )}
+                                    </>
                                 ) : (
                                     <button
                                         type="submit"
