@@ -25,6 +25,12 @@ const Meat = ({ admin, meats, tempCart, setTempCart }) => {
     }
   });
 
+  const deleteMeat = async () => {
+    await fetch(`http://localhost3001/api/meats/:meatId`, {
+      method: "DELETE",
+    });
+  };
+
   useEffect(() => {
     let selectedMeats = meats.filter((meat) => meat.species === species);
     if (!selectedMeats.length) {
@@ -37,111 +43,10 @@ const Meat = ({ admin, meats, tempCart, setTempCart }) => {
   if (!meats.length) {
     return <></>;
   }
-  useEffect(() => {
-    let selectedMeats = meats.filter((meat) => meat.species === species);
-    if (!selectedMeats.length) {
-      setSelected(meats);
-      return;
-    }
-    setSelected(selectedMeats);
-  }, [species, meats, user]);
 
-  console.log(tempCart);
-
-  if (!meats.length) {
-    return <></>;
-  }
-  if (!user) {
-    return <></>;
-  }
-  if (!user.administrator) {
-    return (
-      <>
-        <div className="meatpage">
-          <h1>We have the meats</h1>
-          <select
-            name="meatlist"
-            id="meatlist"
-            onChange={(e) => setSpecies(e.target.value)}
-          >
-            <option value="">Please Select Meat</option>
-            {meatsDropDownList.map((meat) => {
-              return (
-                <option key={meat} value={meat}>
-                  {meat}{" "}
-                </option>
-              );
-            })}
-          </select>
-          <div className="meats">
-            {selected.map((meat) => {
-              return (
-                <div id="meattype" key={meat.id}>
-                  <h2>{meat.species}</h2>
-                  <img className="meat-image" src={meat.image} />
-                  <p>
-                    <b>Flavor: </b>
-                    {meat.flavor}
-                  </p>
-                  <p>
-                    <b>Style: </b>
-                    {meat.style}
-                  </p>
-                  <p>
-                    <b>Description: </b> {meat.description}
-                  </p>
-                  <p>
-                    <b>Price: </b>${meat.price}/lb
-                  </p>
-                  <label htmlFor="meat-qty">
-                    <b>Quantity: </b>
-                  </label>
-                  <select
-                    id="meat-qty"
-                    onChange={(e) => {
-                      meat.weight = e.target.value;
-                    }}
-                  >
-                    {weightQuantity.map((weight) => {
-                      return <option key={weight}>{weight}</option>;
-                    })}
-                  </select>
-                  {lstoken ? (
-                    <>
-                      <button
-                        onClick={() => {
-                          console.log("logged in user");
-                        }}
-                      >
-                        Add to Cart
-                        <span></span>
-                      </button>
-                      {admin ? <button>Delete</button> : <div></div>}
-                    </>
-                  ) : (
-                    <button
-                      type="submit"
-                      onClick={() => {
-                        if (!meat.weight) {
-                          meat.weight = weightQuantity[0].toString();
-                        }
-                        setTempCart([...tempCart, meat]);
-                      }}
-                    >
-                      Add to Cart
-                      <span></span>
-                    </button>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </>
-    );
-  } else {
-    return (
-      <>
+  return (
+    <>
+      <div className="meatpage">
         <h1>We have the meats</h1>
         <select
           name="meatlist"
@@ -157,7 +62,7 @@ const Meat = ({ admin, meats, tempCart, setTempCart }) => {
             );
           })}
         </select>
-        <div className="meat">
+        <div className="meats">
           {selected.map((meat) => {
             return (
               <div id="meattype" key={meat.id}>
@@ -187,30 +92,52 @@ const Meat = ({ admin, meats, tempCart, setTempCart }) => {
                   }}
                 >
                   {weightQuantity.map((weight) => {
-                    {
-                      /* meat.weight = weightQuantity[0]; */
-                    }
                     return <option key={weight}>{weight}</option>;
                   })}
                 </select>
-                <button
-                  type="submit"
-                  onClick={() => {
-                    if (!meat.weight) {
-                      meat.weight = weightQuantity[0].toString();
-                    }
-                    setTempCart([...tempCart, meat]);
-                  }}
-                >
-                  Add to Cart
-                </button>
-                <p>this is different</p>
+                {lstoken ? (
+                  <>
+                    <button
+                      onClick={() => {
+                        console.log("logged in user");
+                      }}
+                    >
+                      Add to Cart
+                      <span></span>
+                    </button>
+                    {admin ? (
+                      <button
+                        onClick={(e) => {
+                          deleteMeat(e.target.value);
+                        }}
+                      >
+                        Delete
+                      </button>
+                    ) : (
+                      <div></div>
+                    )}
+                  </>
+                ) : (
+                  <button
+                    type="submit"
+                    onClick={() => {
+                      if (!meat.weight) {
+                        meat.weight = weightQuantity[0].toString();
+                      }
+                      setTempCart([...tempCart, meat]);
+                    }}
+                  >
+                    Add to Cart
+                    <span></span>
+                  </button>
+                )}
               </div>
             );
           })}
         </div>
-      </>
-    );
-  }
+      </div>
+    </>
+  );
 };
+
 export default Meat;

@@ -67,7 +67,7 @@ meatsRouter.get("/species/:type", async (req, res, next) => {
 
 //-----Post Routes-----//
 
-meatsRouter.post("/", adminRequired, async (req, res, next) => {
+meatsRouter.post("/", async (req, res, next) => {
   const { species, style, description, flavor, weight, price } = req.body;
 
   try {
@@ -89,7 +89,7 @@ meatsRouter.post("/", adminRequired, async (req, res, next) => {
 
 //----Patch Routes-----//
 
-meatsRouter.patch("/:meatId", adminRequired, async (req, res, next) => {
+meatsRouter.patch("/:meatId", async (req, res, next) => {
   try {
     const { meatId } = req.params;
     const { description, weight, price } = req.body;
@@ -110,7 +110,7 @@ meatsRouter.patch("/:meatId", adminRequired, async (req, res, next) => {
 });
 
 //----Delete Meat---//
-meatsRouter.delete("/:meatId", adminRequired, async (req, res, next) => {
+meatsRouter.delete("/:meatId", async (req, res, next) => {
   try {
     const { meatId } = req.params;
 

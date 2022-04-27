@@ -14,7 +14,7 @@ const Home = ({ user }) => {
     }
   };
   useEffect(() => {
-    fetchAllUsers();
+    // fetchAllUsers();
   }, []);
   console.log(allUsers);
   if (user)
