@@ -61,7 +61,7 @@ const Meat = ({ meats, tempCart, setTempCart }) => {
             <div className="meats">
                 {selected.map((meat) => {
                     return (
-                        <div id="meattype" key={meat.id}>
+                        <div className="meattype" key={meat.id}>
                             <h2>{meat.species}</h2>
                             <img className="meat-image" src={meat.image} />
                             <p>
@@ -78,11 +78,12 @@ const Meat = ({ meats, tempCart, setTempCart }) => {
                             <p>
                                 <b>Price: </b>${meat.price}/lb
                             </p>
+                            <div className="meat-qty">
                             <label htmlFor="meat-qty">
                                 <b>Quantity: </b>
                             </label>
+                            
                             <select
-                                id="meat-qty"
                                 onChange={(e) => {
                                     meat.weight = e.target.value;
                                 }}
@@ -96,6 +97,7 @@ const Meat = ({ meats, tempCart, setTempCart }) => {
                                     );
                                 })}
                             </select>
+                            </div>
                             <button
                                 type="submit"
                                 onClick={() => {
