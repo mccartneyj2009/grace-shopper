@@ -214,11 +214,49 @@ select {
 
 .login {
   display: flex;
+  margin: 25px;
+  justify-content: center;
   flex-direction: column;
-  padding: 10px;
+  padding: 50px;
   margin-top: 100px;
   background-color: whitesmoke;
   opacity: 0.7;
+}
+form {
+  padding: 30px;
+  padding-left: 300px;
+  padding-right: 300px;
+  font-size: 150%;
+}
+label {
+  padding: 10px;
+}
+
+.loginButton {
+  display: flex;
+  flex-direction: row;
+  padding: 25px;
+  align-items: center;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+}
+.registerstyle {
+  display: flex;
+  margin: 25px;
+  justify-content: center;
+  flex-direction: column;
+  padding: 100px;
+  margin-top: 100px;
+  background-color: whitesmoke;
+  opacity: 0.7;
+}
+
+.registerForm {
+  display: flex;
+  flex-direction: column;
 }
 
 #aboutus {
