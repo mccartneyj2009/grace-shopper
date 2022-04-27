@@ -1,17 +1,14 @@
 import { useState, useEffect } from "react";
 
 const Cart = ({ tempCart, setTempCart }) => {
-    console.log(tempCart);
-
     //filter cart so that if there are multiple of the same item it adds the qty together and only returns 1 of said item
 
-    // want to be able to modify the quantity when its in the cart.
-
     const cartArr = [...tempCart];
+
     const weightQuantity = [0.5, 1, 2, 3, 4, 5, 10];
 
     let cartTotal = 0;
-    tempCart.forEach((item) => {
+    cartArr.forEach((item) => {
         cartTotal +=
             Number(item.price).toFixed(0) * Number(item.weight).toFixed(2);
     });

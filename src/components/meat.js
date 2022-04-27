@@ -8,16 +8,6 @@ const Meat = ({ admin, meats, tempCart, setTempCart }) => {
     const meatsDropDownList = [];
     const weightQuantity = [0.5, 1, 2, 3, 4, 5, 10];
 
-    // const fetchMeatBySingleSpecies = async (species) => {
-    //     const resp = await fetch(
-    //         `http://localhost:3001/api/meats/species/${species}`
-    //     );
-
-    //     const info = await resp.json();
-
-    //     setSpecies(info);
-    // };
-
     meats.forEach((meat) => {
         let meatIndex = meatsDropDownList.indexOf(meat.species);
         if (meatIndex < 0) {
