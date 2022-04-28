@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Meat = ({ admin, meats, tempCart, setTempCart }) => {
     const [species, setSpecies] = useState({});
@@ -15,6 +16,16 @@ const Meat = ({ admin, meats, tempCart, setTempCart }) => {
             meatsDropDownList.push(meat.species);
         }
     });
+    // const deleteUserMeat = async () => {
+    //   await fetch(`http://localchost3001/api/meats/:meat_id`, {
+    //     method: "DELETE",
+    //   });
+    // };
+    const deleteMeat = async () => {
+        await fetch(`http://localhost3001/api/meats/:meatId`, {
+            method: "DELETE",
+        });
+    };
 
     const fetchUser = async () => {
         try {
@@ -81,6 +92,13 @@ const Meat = ({ admin, meats, tempCart, setTempCart }) => {
         <>
             <div className="meatpage">
                 <h1>We have the meats</h1>
+                {admin ? (
+                    <Link to="./addMeat">
+                        <button>Add Meats</button>
+                    </Link>
+                ) : (
+                    <div></div>
+                )}
                 <select
                     name="meatlist"
                     id="meatlist"
@@ -95,15 +113,12 @@ const Meat = ({ admin, meats, tempCart, setTempCart }) => {
                         );
                     })}
                 </select>
-
-                {selected.map((meat) => {
-                    return (
-                        <div key={meat.id} className="meat">
-                            <div className="meattype" key={meat.id}>
+                <div className="meats">
+                    {selected.map((meat) => {
+                        return (
+                            <div id="meattype" key={meat.id}>
                                 <h2>{meat.species}</h2>
                                 <img className="meat-image" src={meat.image} />
-                            </div>
-                            <div className="meatsright">
                                 <p>
                                     <b>Flavor: </b>
                                     {meat.flavor}
@@ -118,80 +133,146 @@ const Meat = ({ admin, meats, tempCart, setTempCart }) => {
                                 <p>
                                     <b>Price: </b>${meat.price}/lb
                                 </p>
+                                <label htmlFor="meat-qty">
+                                    <b>Quantity: </b>
+                                </label>
+                                <select
+                                    id="meat-qty"
+                                    onChange={(e) => {
+                                        meat.weight = e.target.value;
+                                    }}
+                                >
+                                    {weightQuantity.map((weight) => {
+                                        return (
+                                            <option key={weight}>
+                                                {weight}
+                                            </option>
+                                        );
+                                    })}
+                                </select>
 
-                                <div className="meat-qty">
-                                    <label htmlFor="meat-qty">
-                                        <b>Quantity: </b>
-                                    </label>
-                                    <select
-                                        onChange={(e) => {
-                                            meat.weight = e.target.value;
-                                        }}
-                                    >
-                                        {weightQuantity.map((weight) => {
-                                            return (
-                                                <option key={weight}>
-                                                    {weight}
-                                                </option>
-                                            );
-                                        })}
-                                    </select>
-                                </div>
-                                {lstoken ? (
-                                    <>
-                                        {/* this is the button that will send the data to the backend */}
-                                        <button
-                                            onClick={() => {
-                                                if (!meat.weight) {
-                                                    meat.weight =
-                                                        weightQuantity[0].toString();
-                                                }
-                                                if (
-                                                    tempCart.indexOf(meat) > -1
-                                                ) {
-                                                    return;
-                                                }
-                                                setTempCart([
-                                                    ...tempCart,
-                                                    meat,
-                                                ]);
-                                                handleAddUserMeats(
-                                                    meat.id,
-                                                    signedInUser.id,
-                                                    meat.weight
-                                                );
-                                            }}
-                                        >
-                                            Add to Cart
-                                            <span></span>
-                                        </button>
-                                        {admin ? (
-                                            <button>Delete</button>
-                                        ) : (
-                                            <div></div>
-                                        )}
-                                    </>
-                                ) : (
-                                    <button
-                                        type="submit"
-                                        onClick={() => {
-                                            if (!meat.weight) {
-                                                meat.weight =
-                                                    weightQuantity[0].toString();
-                                            }
-                                            if (tempCart.indexOf(meat) > -1) {
-                                                return;
-                                            }
-                                            setTempCart([...tempCart, meat]);
-                                        }}
-                                    >
-                                        Add to Cart
-                                    </button>
-                                )}
+                                {selected.map((meat) => {
+                                    return (
+                                        <div key={meat.id} className="meat">
+                                            <div
+                                                className="meattype"
+                                                key={meat.id}
+                                            >
+                                                <h2>{meat.species}</h2>
+                                                <img
+                                                    className="meat-image"
+                                                    src={meat.image}
+                                                />
+                                            </div>
+                                            <div className="meatsright">
+                                                <p>
+                                                    <b>Flavor: </b>
+                                                    {meat.flavor}
+                                                </p>
+                                                <p>
+                                                    <b>Style: </b>
+                                                    {meat.style}
+                                                </p>
+                                                <p>
+                                                    <b>Description: </b>{" "}
+                                                    {meat.description}
+                                                </p>
+                                                <p>
+                                                    <b>Price: </b>${meat.price}
+                                                    /lb
+                                                </p>
+
+                                                <div className="meat-qty">
+                                                    <label htmlFor="meat-qty">
+                                                        <b>Quantity: </b>
+                                                    </label>
+                                                    <select
+                                                        onChange={(e) => {
+                                                            meat.weight =
+                                                                e.target.value;
+                                                        }}
+                                                    >
+                                                        {weightQuantity.map(
+                                                            (weight) => {
+                                                                return (
+                                                                    <option
+                                                                        key={
+                                                                            weight
+                                                                        }
+                                                                    >
+                                                                        {weight}
+                                                                    </option>
+                                                                );
+                                                            }
+                                                        )}
+                                                    </select>
+                                                </div>
+                                                {lstoken ? (
+                                                    <>
+                                                        {/* this is the button that will send the data to the backend */}
+                                                        <button
+                                                            onClick={() => {
+                                                                if (
+                                                                    !meat.weight
+                                                                ) {
+                                                                    meat.weight =
+                                                                        weightQuantity[0].toString();
+                                                                }
+                                                                if (
+                                                                    tempCart.indexOf(
+                                                                        meat
+                                                                    ) > -1
+                                                                ) {
+                                                                    return;
+                                                                }
+                                                                setTempCart([
+                                                                    ...tempCart,
+                                                                    meat,
+                                                                ]);
+                                                                handleAddUserMeats(
+                                                                    meat.id,
+                                                                    signedInUser.id,
+                                                                    meat.weight
+                                                                );
+                                                            }}
+                                                        >
+                                                            Add to Cart
+                                                            <span></span>
+                                                        </button>
+                                                    </>
+                                                ) : (
+                                                    <button
+                                                        type="submit"
+                                                        onClick={() => {
+                                                            if (!meat.weight) {
+                                                                meat.weight =
+                                                                    weightQuantity[0].toString();
+                                                            }
+                                                            if (
+                                                                tempCart.indexOf(
+                                                                    meat
+                                                                ) > -1
+                                                            ) {
+                                                                return;
+                                                            }
+                                                            setTempCart([
+                                                                ...tempCart,
+                                                                meat,
+                                                            ]);
+                                                        }}
+                                                    >
+                                                        Add to Cart
+                                                        <span></span>
+                                                    </button>
+                                                )}
+                                            </div>
+                                        </div>
+                                    );
+                                })}
                             </div>
-                        </div>
-                    );
-                })}
+                        );
+                    })}
+                </div>
             </div>
         </>
     );

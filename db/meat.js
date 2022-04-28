@@ -5,13 +5,12 @@ async function createMeat({
     style,
     description,
     flavor,
-    weight,
     price,
     image,
 }) {
     try {
         const {
-            rows: [user],
+            rows: [meat],
         } = await client.query(
             `
       INSERT INTO meat(species,style,description,flavor,price,image) 
@@ -20,12 +19,13 @@ async function createMeat({
     `,
             [species, style, description, flavor, price, image]
         );
-
-        return user;
+        console.log(meat);
+        return meat;
     } catch (error) {
         throw error;
     }
 }
+// createMeat("cow", "steak", "bland", "none", 39);
 async function updateMeat({ id, description, price }) {
     try {
         const {
@@ -50,6 +50,7 @@ async function deleteMeat(id) {
       DELETE FROM meat WHERE id = $1`,
             [id]
         );
+        console.log(meat);
         return meat;
     } catch (error) {
         throw error;
