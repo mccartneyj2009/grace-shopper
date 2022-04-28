@@ -9,11 +9,9 @@ const {
   // deleteUser,
 } = require("../db/index");
 
-const adminRequired = require("./utils");
-
 const usersRouter = express.Router();
 
-usersRouter.get("/all", adminRequired, async (req, res, next) => {
+usersRouter.get("/all", async (req, res, next) => {
   try {
     const users = await getAllUsers();
     res.send({ users });

@@ -16,7 +16,7 @@ const AddMeat = ({ meat, admin }) => {
     try {
       const resp = await fetch(`http://localhost:3001/api/meats/addMeat`, {
         method: "POST",
-        header: {
+        headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
@@ -31,6 +31,7 @@ const AddMeat = ({ meat, admin }) => {
       const info = await resp.json();
       console.log(info);
       setNewMeat(info);
+      navigation("/meat");
     } catch (error) {
       throw error;
     }
@@ -51,7 +52,6 @@ const AddMeat = ({ meat, admin }) => {
               placeholder="Enter Species..."
               value={species}
               onChange={(e) => {
-                console.log(e.target.value);
                 setSpecies(e.target.value);
               }}
             />

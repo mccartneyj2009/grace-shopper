@@ -1,30 +1,52 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const Home = ({ user }) => {
-  const [allUsers, setAllUsers] = useState({});
-  const fetchAllUsers = async () => {
-    try {
-      const resp = await fetch(`http://localhost:3001/api/users/all`);
-      const info = await resp.json();
-
-      setAllUsers(info);
-    } catch (error) {
-      throw error;
-    }
-  };
-  useEffect(() => {
-    // fetchAllUsers();
-  }, []);
+const Home = ({ allUsers, admin, user }) => {
+  // if (!admin) {
+  //   return (
+  //     <>
+  //       {" "}
+  //       <div id="intro">
+  //         <h1>When you're with Tony, youre with Family</h1>
+  //         <h1>Come back Weekly for New Meats!</h1>
+  //       </div>
+  //     </>
+  //   );
   console.log(allUsers);
-  if (user)
-    return (
-      <>
-        <div id="intro">
-          <h1>When you're with Tony, youre with Family</h1>
+  return (
+    <>
+      {admin ? (
+        <div>
+          <h1>User Information</h1>
+          {allUsers.users.map((user) => {
+            return (
+              <div key={user.id}>
+                <p>{user.first_name}</p>
+                <p>{user.last_name}</p>
+                <p>{user.email}</p>
+              </div>
+            );
+          })}
         </div>
-      </>
-    );
+      ) : (
+        <div>
+          <div id="intro">
+            // <h1>When you're with Tony, youre with Family</h1>
+            // <h1>Come back Weekly for New Meats!</h1>
+            //{" "}
+          </div>
+        </div>
+      )}
+
+      {/* {allUsers.map((user) => {
+        return (
+          <div key={user.id}>
+            <h1>{user.id}</h1>
+          </div>
+        );
+      })} */}
+    </>
+  );
 };
 
 export default Home;

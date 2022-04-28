@@ -120,7 +120,7 @@ const Meat = ({ admin, meats, tempCart, setTempCart }) => {
                     {admin ? (
                       <button
                         onClick={(e) => {
-                          deleteUserMeat(e.target.value);
+                          // deleteUserMeat(e.target.value);
                           deleteMeat(e.target.value);
                         }}
                       >

@@ -18,7 +18,7 @@ const App = () => {
   const [token, setToken] = useState("");
   const [tempCart, setTempCart] = useState([]);
   const [admin, setAdmin] = useState(false);
-
+  const [allUsers, setAllUsers] = useState({});
   const fetchUser = async () => {
     try {
       const lstoken = localStorage.getItem("token");
@@ -49,6 +49,17 @@ const App = () => {
       throw error;
     }
   };
+  const fetchAllUsers = async () => {
+    try {
+      const resp = await fetch(`http://localhost:3001/api/users/all`);
+      const info = await resp.json();
+
+      setAllUsers(info);
+      return info;
+    } catch (error) {
+      throw error;
+    }
+  };
 
   const fetchMeat = async () => {
     const resp = await fetch(`http://localhost:3001/api/meats`);
@@ -60,6 +71,7 @@ const App = () => {
 
   useEffect(() => {
     fetchUser();
+    fetchAllUsers();
     fetchMeat();
   }, []);
 
@@ -68,7 +80,11 @@ const App = () => {
       <Navbar user={user} />
       <div id="main-section">
         <Routes>
-          <Route exact path="/" element={<Home user={user} />} />
+          <Route
+            exact
+            path="/"
+            element={<Home user={user} admin={admin} allUsers={allUsers} />}
+          />
 
           <Route
             exact
