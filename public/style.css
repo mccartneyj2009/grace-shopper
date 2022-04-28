@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Wire+One&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Nova+Mono&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Water+Brush&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nova+Mono&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Water+Brush&display=swap");
 
 * {
   font-family: monospace;
@@ -67,7 +67,6 @@ body {
 }
 
 .linksolo {
-
   font-family: "Wire One";
   font-size: 30px;
   font-weight: bolder;
@@ -124,7 +123,7 @@ body {
   justify-content: center;
   align-items: center;
   color: #e1b893;
-  font-family: 'Water Brush';
+  font-family: "Water Brush";
   font-size: 85px;
   font-weight: bolder;
   text-shadow: 2px 2px black;
@@ -150,6 +149,11 @@ body {
   padding-bottom: 20px;
 }
 
+.meatpage h1 {
+  background-color: black;
+  /* opacity: 0.8; */
+
+}
 
 .meattype {
   align-content: center;
@@ -206,19 +210,17 @@ body {
 h1 {
   display: flex;
   justify-content: center;
-  font-family: 'Bungee Shade';
+  font-family: "Bungee Shade";
   font-size: 65px;
   color: black;
   text-shadow: 2px 1px #e1b893;
   padding-left: 15px;
-
-
 }
 
 h2 {
   display: flex;
   justify-content: left;
-  font-family: 'Wire One';
+  font-family: "Wire One";
   color: maroon;
   font-size: 70px;
   margin-top: 120px;
@@ -246,14 +248,80 @@ select {
 }
 
 .login {
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
   margin-top: 100px;
   background-color: whitesmoke;
-  opacity: 0.7;
-
+  opacity: 0.9;
+  border-radius: 4%;
 }
+
+.login h1 {
+  font-size: 40px;
+  margin-top: -5px;
+  margin-bottom: -20px;
+  padding: 15px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 50px;
+  padding: 30px;
+  width: 300px;
+  height: fit-content;
+  font-size: 150%;
+}
+
+form label {
+  padding-bottom: 5px;
+  padding-top: 25px;
+}
+
+
+.loginButton {
+  width: 60%;
+  margin-left: 55px;
+  margin-top: 40px;
+}
+
+
+
+.registerstyle {
+  margin-top: 100px;
+  background-color: whitesmoke;
+  opacity: 0.9;
+  border-radius: 4%;
+}
+
+.registerstyle h1 {
+  font-size: 40px;
+  margin-top: -5px;
+  margin-bottom: -20px;
+  padding: 15px;
+}
+
+.registerForm Button {
+  width: fit-content;
+  justify-content: center;
+  margin-top: 40px;
+  margin-left: 130px;
+}
+
+.registerForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 50px;
+  padding: 30px;
+  width: 400px;
+  height: fit-content;
+}
+
+.registerForm label {
+  padding-bottom: 5px;
+  padding-top: 25px;
+}
+
 
 #aboutus {
   display: flex;
@@ -273,7 +341,6 @@ select {
   justify-content: center;
   font-size: 15px;
 }
-
 
 @keyframes shake {
   0% {
@@ -347,6 +414,6 @@ button:hover {
   transform: translateY(-7px);
 }
 
-button:active {
-  transform: translateY(-1px);
+button:active span::before {
+  background: maroon;
 }

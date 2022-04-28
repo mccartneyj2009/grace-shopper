@@ -44,7 +44,9 @@ const Login = ({ user, setUser }) => {
   return (
     <>
       <div className="login">
+      <h1>Login Here</h1>
         <form
+      
           onSubmit={(e) => {
             e.preventDefault();
             handleLoginUser();
@@ -72,11 +74,11 @@ const Login = ({ user, setUser }) => {
             id="password"
             placeholder="Password"
           ></input>
-          <button>Login</button>
+          <button className="loginButton">Login</button>
         </form>
         <p>{error}</p>
         <p>
-          No account? <Link to="/register">Register Here!</Link>
+          No account? <Link to="/register"> Register Here!</Link>
         </p>
       </div>
     </>
