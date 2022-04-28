@@ -67,6 +67,7 @@ const Register = ({ user, setUser }) => {
   return (
     <>
       <div className="registerstyle">
+        <h1>Register Here</h1>
         <form
           className="registerForm"
           onSubmit={(e) => {

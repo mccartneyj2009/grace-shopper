@@ -1,14 +1,24 @@
 import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 
-import { Meat, Home, Navbar, Login, Register, Info, Cart } from "./components";
+import {
+  Meat,
+  Home,
+  Navbar,
+  Login,
+  Register,
+  Info,
+  Cart,
+  AddMeat,
+} from "./components";
 
 const App = () => {
   const [meats, setMeat] = useState([]);
   const [user, setUser] = useState({});
   const [token, setToken] = useState("");
   const [tempCart, setTempCart] = useState([]);
-
+  const [admin, setAdmin] = useState(false);
+  const [allUsers, setAllUsers] = useState({});
   const fetchUser = async () => {
     try {
       const lstoken = localStorage.getItem("token");
@@ -28,8 +38,24 @@ const App = () => {
         if (info) {
           setUser(info.user);
         }
+
+        if (info.administrator) {
+          setAdmin(true);
+        }
+
         return info;
       }
+    } catch (error) {
+      throw error;
+    }
+  };
+  const fetchAllUsers = async () => {
+    try {
+      const resp = await fetch(`http://localhost:3001/api/users/all`);
+      const info = await resp.json();
+
+      setAllUsers(info);
+      return info;
     } catch (error) {
       throw error;
     }
@@ -45,6 +71,7 @@ const App = () => {
 
   useEffect(() => {
     fetchUser();
+    fetchAllUsers();
     fetchMeat();
   }, []);
 
@@ -53,14 +80,20 @@ const App = () => {
       <Navbar user={user} />
       <div id="main-section">
         <Routes>
-          <Route exact path="/" element={<Home />} />
+          <Route
+            exact
+            path="/"
+            element={<Home user={user} admin={admin} allUsers={allUsers} />}
+          />
 
           <Route
             exact
             path="/meat"
             element={
               <Meat
+                admin={admin}
                 meats={meats}
+                setMeat={setMeat}
                 tempCart={tempCart}
                 setTempCart={setTempCart}
               />
@@ -82,6 +115,12 @@ const App = () => {
             element={<Cart tempCart={tempCart} setTempCart={setTempCart} />}
           />
           <Route exact path="/info" element={<Info />} />
+
+          <Route
+            exact
+            path="meat/addMeat"
+            element={<AddMeat user={user} admin={admin} setMeat={setMeat} />}
+          />
         </Routes>
       </div>
     </div>

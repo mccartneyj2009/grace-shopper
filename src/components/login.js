@@ -41,15 +41,12 @@ const Login = ({ user, setUser }) => {
     }
   };
 
-  if (lstoken) {
-    return <Navigate replace to="/" />;
-  }
-
   return (
     <>
       <div className="login">
+      <h1>Login Here</h1>
         <form
-          className="loginForm"
+      
           onSubmit={(e) => {
             e.preventDefault();
             handleLoginUser();

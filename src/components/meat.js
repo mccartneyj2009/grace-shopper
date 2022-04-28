@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
-const Meat = ({ meats, tempCart, setTempCart }) => {
+const Meat = ({ admin, meats, tempCart, setTempCart }) => {
   const [species, setSpecies] = useState({});
   const [selected, setSelected] = useState([]);
 
@@ -8,15 +9,15 @@ const Meat = ({ meats, tempCart, setTempCart }) => {
   const meatsDropDownList = [];
   const weightQuantity = [0.5, 1, 2, 3, 4, 5, 10];
 
-  const fetchMeatBySingleSpecies = async (species) => {
-    const resp = await fetch(
-      `http://localhost:3001/api/meats/species/${species}`
-    );
+  // const fetchMeatBySingleSpecies = async (species) => {
+  //     const resp = await fetch(
+  //         `http://localhost:3001/api/meats/species/${species}`
+  //     );
 
-    const info = await resp.json();
+  //     const info = await resp.json();
 
-    setSpecies(info);
-  };
+  //     setSpecies(info);
+  // };
 
   meats.forEach((meat) => {
     let meatIndex = meatsDropDownList.indexOf(meat.species);
@@ -24,6 +25,16 @@ const Meat = ({ meats, tempCart, setTempCart }) => {
       meatsDropDownList.push(meat.species);
     }
   });
+  // const deleteUserMeat = async () => {
+  //   await fetch(`http://localchost3001/api/meats/:meat_id`, {
+  //     method: "DELETE",
+  //   });
+  // };
+  const deleteMeat = async () => {
+    await fetch(`http://localhost3001/api/meats/:meatId`, {
+      method: "DELETE",
+    });
+  };
 
   useEffect(() => {
     let selectedMeats = meats.filter((meat) => meat.species === species);
@@ -32,9 +43,7 @@ const Meat = ({ meats, tempCart, setTempCart }) => {
       return;
     }
     setSelected(selectedMeats);
-  }, [species, meats]);
-
-  console.log(tempCart);
+  }, [species, meats, admin]);
 
   if (!meats.length) {
     return <></>;
@@ -44,6 +53,13 @@ const Meat = ({ meats, tempCart, setTempCart }) => {
     <>
       <div className="meatpage">
         <h1>We have the meats</h1>
+        {admin ? (
+          <Link to="./addMeat">
+            <button>Add Meats</button>
+          </Link>
+        ) : (
+          <div></div>
+        )}
         <select
           name="meatlist"
           id="meatlist"
@@ -88,24 +104,46 @@ const Meat = ({ meats, tempCart, setTempCart }) => {
                   }}
                 >
                   {weightQuantity.map((weight) => {
-                    {
-                      /* meat.weight = weightQuantity[0]; */
-                    }
                     return <option key={weight}>{weight}</option>;
                   })}
                 </select>
-                <button
-                  type="submit"
-                  onClick={() => {
-                    if (!meat.weight) {
-                      meat.weight = weightQuantity[0].toString();
-                    }
-                    setTempCart([...tempCart, meat]);
-                  }}
-                >
-                  Add to Cart
-                  <span></span>
-                </button>
+                {lstoken ? (
+                  <>
+                    <button
+                      onClick={() => {
+                        console.log("logged in user");
+                      }}
+                    >
+                      Add to Cart
+                      <span></span>
+                    </button>
+                    {admin ? (
+                      <button
+                        onClick={(e) => {
+                          // deleteUserMeat(e.target.value);
+                          deleteMeat(e.target.value);
+                        }}
+                      >
+                        Delete
+                      </button>
+                    ) : (
+                      <div></div>
+                    )}
+                  </>
+                ) : (
+                  <button
+                    type="submit"
+                    onClick={() => {
+                      if (!meat.weight) {
+                        meat.weight = weightQuantity[0].toString();
+                      }
+                      setTempCart([...tempCart, meat]);
+                    }}
+                  >
+                    Add to Cart
+                    <span></span>
+                  </button>
+                )}
               </div>
             );
           })}

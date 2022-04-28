@@ -248,54 +248,80 @@ select {
 }
 
 .login {
-  display: flex;
-  margin: 25px;
-  justify-content: center;
-  flex-direction: column;
-  padding: 50px;
   margin-top: 100px;
   background-color: whitesmoke;
-  opacity: 0.7;
+  opacity: 0.9;
+  border-radius: 4%;
+}
+
+.login h1 {
+  font-size: 40px;
+  margin-top: -5px;
+  margin-bottom: -20px;
+  padding: 15px;
 }
 
 form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 50px;
   padding: 30px;
-  padding-left: 300px;
-  padding-right: 300px;
+  width: 300px;
+  height: fit-content;
   font-size: 150%;
 }
 
-label {
-  padding: 10px;
+form label {
+  padding-bottom: 5px;
+  padding-top: 25px;
 }
+
 
 .loginButton {
-  display: flex;
-  flex-direction: row;
-  padding: 25px;
-  align-items: center;
+  width: 60%;
+  margin-left: 55px;
+  margin-top: 40px;
 }
 
-.loginForm {
-  display: flex;
-  flex-direction: column;
-}
+
 
 .registerstyle {
-  display: flex;
-  margin: 25px;
-  justify-content: center;
-  flex-direction: column;
-  padding: 100px;
   margin-top: 100px;
   background-color: whitesmoke;
-  opacity: 0.7;
+  opacity: 0.9;
+  border-radius: 4%;
+}
+
+.registerstyle h1 {
+  font-size: 40px;
+  margin-top: -5px;
+  margin-bottom: -20px;
+  padding: 15px;
+}
+
+.registerForm Button {
+  width: fit-content;
+  justify-content: center;
+  margin-top: 40px;
+  margin-left: 130px;
 }
 
 .registerForm {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 50px;
+  padding: 30px;
+  width: 400px;
+  height: fit-content;
 }
+
+.registerForm label {
+  padding-bottom: 5px;
+  padding-top: 25px;
+}
+
 
 #aboutus {
   display: flex;
