@@ -12,7 +12,9 @@ const Home = ({ allUsers, admin, user }) => {
     //       </div>
     //     </>
     //   );
-    console.log(allUsers);
+    // console.log(allUsers);
+
+    useEffect(() => {}, []);
     return (
         <>
             {admin ? (
