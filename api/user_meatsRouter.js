@@ -7,8 +7,8 @@ const {
 
 const usermeatsRouter = express.Router();
 
-usermeatsRouter.get("/", async (req, res, next) => {
-    const user_id = req.body;
+usermeatsRouter.get("/getmeats/:id", async (req, res, next) => {
+    const user_id = req.params.id;
     try {
         const allMeats = await getAllUserMeats(user_id);
         res.send(allMeats);

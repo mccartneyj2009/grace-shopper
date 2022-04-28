@@ -75,7 +75,7 @@ async function getMeatById(meatId) {
         const {
             rows: [meat],
         } = await client.query(`
-      SELECT id, species, description,style, flavor, price
+      SELECT *
       FROM meat
       WHERE id = ${meatId}`);
         console.log(meat);
