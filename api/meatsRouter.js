@@ -76,7 +76,7 @@ meatsRouter.get("/:id", async (req, res, next) => {
 
 //-----Post Routes-----//
 
-meatsRouter.post("/", async (req, res, next) => {
+meatsRouter.post("/addMeat", async (req, res, next) => {
     const { species, style, description, flavor, weight, price } = req.body;
 
     try {

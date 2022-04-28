@@ -121,50 +121,57 @@ const Cart = ({ tempCart, setTempCart }) => {
                         <div key={item.id} className="cart-item">
                             <h1>{item.species}</h1>
                             <img className="meat-image" src={item.image} />
-                            <p>
-                                <b>Description: </b>
-                                {item.description}
-                            </p>
-                            <p>
-                                <b>Price per lb: </b>$
-                                {Number(item.price).toFixed(2)}
-                            </p>
-                            <p>
-                                <b>Quantity: </b>
-                                <select
-                                    defaultValue={item.weight}
-                                    onChange={(e) => {
+                            <div id="cart-right">
+                                <p>
+                                    <b>Description: </b>
+                                    {item.description}
+                                </p>
+                                <p>
+                                    <b>Price per lb: </b>$
+                                    {Number(item.price).toFixed(2)}
+                                </p>
+                                <p>
+                                    <b>Quantity: </b>
+                                    <select
+                                        defaultValue={item.weight}
+                                        onChange={(e) => {
+                                            let index = cartArr.indexOf(item);
+                                            cartArr[index].weight =
+                                                e.target.value;
+                                            setTempCart(cartArr);
+                                        }}
+                                    >
+                                        {weightQuantity.map((weight) => {
+                                            return (
+                                                <option key={weight}>
+                                                    {weight}
+                                                </option>
+                                            );
+                                        })}
+                                    </select>
+                                </p>
+                                <p>
+                                    <b>Total for item: </b>$
+                                    {Number(item.price * item.weight).toFixed(
+                                        2
+                                    )}
+                                </p>
+                                <button
+                                    onClick={() => {
+                                        if (lstoken) {
+                                            handleDeleteUserMeats(item.id);
+                                            handleGetAllUserMeats(
+                                                signedInUser.id
+                                            );
+                                        }
                                         let index = cartArr.indexOf(item);
-                                        cartArr[index].weight = e.target.value;
+                                        cartArr.splice(index, 1);
                                         setTempCart(cartArr);
                                     }}
                                 >
-                                    {weightQuantity.map((weight) => {
-                                        return (
-                                            <option key={weight}>
-                                                {weight}
-                                            </option>
-                                        );
-                                    })}
-                                </select>
-                            </p>
-                            <p>
-                                <b>Total for item: </b>$
-                                {Number(item.price * item.weight).toFixed(2)}
-                            </p>
-                            <button
-                                onClick={() => {
-                                    if (lstoken) {
-                                        handleDeleteUserMeats(item.id);
-                                        handleGetAllUserMeats(signedInUser.id);
-                                    }
-                                    let index = cartArr.indexOf(item);
-                                    cartArr.splice(index, 1);
-                                    setTempCart(cartArr);
-                                }}
-                            >
-                                Remove Meat
-                            </button>
+                                    Remove Meat
+                                </button>
+                            </div>
                         </div>
                     );
                 })}
@@ -193,48 +200,53 @@ const Cart = ({ tempCart, setTempCart }) => {
                         <div key={item.id} className="cart-item">
                             <h1>{item.species}</h1>
                             <img className="meat-image" src={item.image} />
-                            <p>
-                                <b>Description: </b>
-                                {item.description}
-                            </p>
-                            <p>
-                                <b>Price per lb: </b>$
-                                {Number(item.price).toFixed(2)}
-                            </p>
-                            <p>
-                                <b>Quantity: </b>
-                                <select
-                                    defaultValue={item.weight}
-                                    onChange={(e) => {
+                            <div id="cart-right">
+                                <p>
+                                    <b>Description: </b>
+                                    {item.description}
+                                </p>
+                                <p>
+                                    <b>Price per lb: </b>$
+                                    {Number(item.price).toFixed(2)}
+                                </p>
+                                <p>
+                                    <b>Quantity: </b>
+                                    <select
+                                        defaultValue={item.weight}
+                                        onChange={(e) => {
+                                            let index = cartArr.indexOf(item);
+                                            cartArr[index].weight =
+                                                e.target.value;
+                                            setTempCart(cartArr);
+                                        }}
+                                    >
+                                        {weightQuantity.map((weight) => {
+                                            return (
+                                                <option key={weight}>
+                                                    {weight}
+                                                </option>
+                                            );
+                                        })}
+                                    </select>
+                                </p>
+                                <p>
+                                    <b>Total for item: </b>$
+                                    {Number(item.price * item.weight).toFixed(
+                                        2
+                                    )}
+                                </p>
+                                <button
+                                    onClick={() => {
+                                        if (lstoken) {
+                                        }
                                         let index = cartArr.indexOf(item);
-                                        cartArr[index].weight = e.target.value;
+                                        cartArr.splice(index, 1);
                                         setTempCart(cartArr);
                                     }}
                                 >
-                                    {weightQuantity.map((weight) => {
-                                        return (
-                                            <option key={weight}>
-                                                {weight}
-                                            </option>
-                                        );
-                                    })}
-                                </select>
-                            </p>
-                            <p>
-                                <b>Total for item: </b>$
-                                {Number(item.price * item.weight).toFixed(2)}
-                            </p>
-                            <button
-                                onClick={() => {
-                                    if (lstoken) {
-                                    }
-                                    let index = cartArr.indexOf(item);
-                                    cartArr.splice(index, 1);
-                                    setTempCart(cartArr);
-                                }}
-                            >
-                                Remove Meat
-                            </button>
+                                    Remove Meat
+                                </button>
+                            </div>
                         </div>
                     );
                 })}
