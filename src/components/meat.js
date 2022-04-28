@@ -114,43 +114,6 @@ const Meat = ({ admin, meats, tempCart, setTempCart }) => {
                     })}
                 </select>
                 <div className="meats">
-                    {/* {selected.map((meat) => {
-                        return (
-                            <div id="meattype" key={meat.id}>
-                                <h2>{meat.species}</h2>
-                                <img className="meat-image" src={meat.image} />
-                                <p>
-                                    <b>Flavor: </b>
-                                    {meat.flavor}
-                                </p>
-                                <p>
-                                    <b>Style: </b>
-                                    {meat.style}
-                                </p>
-                                <p>
-                                    <b>Description: </b> {meat.description}
-                                </p>
-                                <p>
-                                    <b>Price: </b>${meat.price}/lb
-                                </p>
-                                <label htmlFor="meat-qty">
-                                    <b>Quantity: </b>
-                                </label>
-                                <select
-                                    id="meat-qty"
-                                    onChange={(e) => {
-                                        meat.weight = e.target.value;
-                                    }}
-                                >
-                                    {weightQuantity.map((weight) => {
-                                        return (
-                                            <option key={weight}>
-                                                {weight}
-                                            </option>
-                                        );
-                                    })}
-                                </select> */}
-
                     {selected.map((meat) => {
                         return (
                             <div key={meat.id} className="meat">
@@ -215,6 +178,7 @@ const Meat = ({ admin, meats, tempCart, setTempCart }) => {
                                                         ...tempCart,
                                                         meat,
                                                     ]);
+
                                                     handleAddUserMeats(
                                                         meat.id,
                                                         signedInUser.id,

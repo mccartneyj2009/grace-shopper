@@ -13,20 +13,15 @@ const Cart = ({ tempCart, setTempCart }) => {
         cartArr = [...tempCart];
     }
 
+    const tempArr = [...tempCart];
+
     const weightQuantity = [0.5, 1, 2, 3, 4, 5, 10];
 
     let cartTotal = 0;
-    // if (lstoken) {
-    //     user_meats.forEach((item) => {
-    //         cartTotal +=
-    //             Number(item.price).toFixed(0) * Number(item.weight).toFixed(2);
-    //     });
-    // } else {
-    //     cartArr.forEach((item) => {
-    //         cartTotal +=
-    //             Number(item.price).toFixed(0) * Number(item.weight).toFixed(2);
-    //     });
-    // }
+    tempArr.forEach((item) => {
+        cartTotal +=
+            Number(item.price).toFixed(0) * Number(item.weight).toFixed(2);
+    });
 
     const fetchUser = async () => {
         try {
@@ -102,6 +97,7 @@ const Cart = ({ tempCart, setTempCart }) => {
 
     useEffect(() => {
         fetchUser();
+
         if (lstoken) {
             user_meats.forEach((item) => {
                 cartTotal +=
