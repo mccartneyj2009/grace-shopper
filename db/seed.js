@@ -54,7 +54,7 @@ async function createTables() {
         id SERIAL PRIMARY KEY,
         meat_id INTEGER REFERENCES meat(id),
         user_id INTEGER REFERENCES users(id),
-        order_id INTEGER REFERENCES meat(id)
+        meat_qty DECIMAL NOT NULL
         );`);
     } catch (error) {
         console.log("Error Creating Tables");
@@ -111,22 +111,19 @@ async function createInitialOrders() {
 }
 async function createInitialUserMeats() {
     try {
-        console.log("Creating User_Meats");
-        await createUserMeats({
-            meat_id: 1,
-            user_id: 1,
-            order_id: 1,
-        });
-        await createUserMeats({
-            meat_id: 2,
-            user_id: 2,
-            order_id: 2,
-        });
-        await createUserMeats({
-            meat_id: 3,
-            user_id: 3,
-            order_id: 2,
-        });
+        // console.log("Creating User_Meats");
+        // await createUserMeats({
+        //     meat_id: 1,
+        //     user_id: 1,
+        // });
+        // await createUserMeats({
+        //     meat_id: 2,
+        //     user_id: 2,
+        // });
+        // await createUserMeats({
+        //     meat_id: 3,
+        //     user_id: 3,
+        // });
     } catch (error) {
         console.log("Error Creating User_Meats");
         throw error;

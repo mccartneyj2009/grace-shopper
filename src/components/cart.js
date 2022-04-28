@@ -1,17 +1,57 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Cart = ({ tempCart, setTempCart }) => {
-    //filter cart so that if there are multiple of the same item it adds the qty together and only returns 1 of said item
+    const [user_meats, setUser_meats] = useState([]);
 
-    const cartArr = [...tempCart];
+    const navigation = useNavigate();
+    const lstoken = localStorage.getItem("token");
+    let cartArr = [];
+
+    if (lstoken) {
+        cartArr = [];
+    } else {
+        cartArr = [...tempCart];
+    }
 
     const weightQuantity = [0.5, 1, 2, 3, 4, 5, 10];
-
     let cartTotal = 0;
     cartArr.forEach((item) => {
         cartTotal +=
             Number(item.price).toFixed(0) * Number(item.weight).toFixed(2);
     });
+
+    const handleGetAllUserMeats = async (user_id) => {
+        const resp = await fetch(`http://localhost:3001/api/usermeats`);
+        const info = resp.json();
+        console.log(info);
+        setUser_meats(info);
+    };
+
+    const handleDeleteUserMeats = async (meatId) => {
+        try {
+            const resp = await fetch(
+                `http://localhost:3001/api/usermeats/deleteusermeat`,
+                {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        meat_id: meatId,
+                    }),
+                }
+            );
+            const info = await resp.json();
+            // console.log(info);
+        } catch (error) {
+            next(error);
+        }
+    };
+
+    useEffect(() => {
+        handleGetAllUserMeats();
+    }, []);
 
     return (
         <div id="cart-container">
@@ -51,6 +91,8 @@ const Cart = ({ tempCart, setTempCart }) => {
                         </p>
                         <button
                             onClick={() => {
+                                if (lstoken) {
+                                }
                                 let index = cartArr.indexOf(item);
                                 cartArr.splice(index, 1);
                                 setTempCart(cartArr);
@@ -67,6 +109,8 @@ const Cart = ({ tempCart, setTempCart }) => {
                 <button
                     onClick={() => {
                         console.log("submitting order");
+                        setTempCart([]);
+                        navigation("/ordersubmitted", { replace: true });
                     }}
                 >
                     Submit Order

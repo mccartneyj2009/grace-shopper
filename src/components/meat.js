@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 const Meat = ({ admin, meats, tempCart, setTempCart }) => {
     const [species, setSpecies] = useState({});
     const [selected, setSelected] = useState([]);
+    const [signedInUser, setSignedInUser] = useState({});
 
     const lstoken = localStorage.getItem("token");
     const meatsDropDownList = [];
@@ -14,6 +15,54 @@ const Meat = ({ admin, meats, tempCart, setTempCart }) => {
             meatsDropDownList.push(meat.species);
         }
     });
+
+    const fetchUser = async () => {
+        try {
+            if (lstoken) {
+                const resp = await fetch(`http://localhost:3001/api/users/me`, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${lstoken}`,
+                    },
+                });
+
+                const info = await resp.json();
+
+                if (info) {
+                    setSignedInUser(info);
+                }
+            }
+        } catch (error) {
+            throw error;
+        }
+    };
+
+    const handleAddUserMeats = async (meatId, userId, meatQty) => {
+        try {
+            const resp = await fetch(
+                `http://localhost:3001/api/usermeats/addusermeat`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        meat_id: meatId,
+                        user_id: userId,
+                        meat_qty: meatQty,
+                    }),
+                }
+            );
+            const info = await resp.json();
+            // console.log(info);
+        } catch (error) {
+            next(error);
+        }
+    };
+
+    useEffect(() => {
+        fetchUser();
+    }, []);
 
     useEffect(() => {
         let selectedMeats = meats.filter((meat) => meat.species === species);
@@ -93,7 +142,24 @@ const Meat = ({ admin, meats, tempCart, setTempCart }) => {
                                         {/* this is the button that will send the data to the backend */}
                                         <button
                                             onClick={() => {
-                                                console.log("logged in user");
+                                                if (!meat.weight) {
+                                                    meat.weight =
+                                                        weightQuantity[0].toString();
+                                                }
+                                                if (
+                                                    tempCart.indexOf(meat) > -1
+                                                ) {
+                                                    return;
+                                                }
+                                                setTempCart([
+                                                    ...tempCart,
+                                                    meat,
+                                                ]);
+                                                handleAddUserMeats(
+                                                    meat.id,
+                                                    signedInUser.id,
+                                                    meat.weight
+                                                );
                                             }}
                                         >
                                             Add to Cart
@@ -112,6 +178,9 @@ const Meat = ({ admin, meats, tempCart, setTempCart }) => {
                                             if (!meat.weight) {
                                                 meat.weight =
                                                     weightQuantity[0].toString();
+                                            }
+                                            if (tempCart.indexOf(meat) > -1) {
+                                                return;
                                             }
                                             setTempCart([...tempCart, meat]);
                                         }}
