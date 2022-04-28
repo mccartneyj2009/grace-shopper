@@ -284,8 +284,6 @@ form label {
   margin-top: 40px;
 }
 
-
-
 .registerstyle {
   margin-top: 100px;
   background-color: whitesmoke;
@@ -333,7 +331,8 @@ form label {
   height: auto;
   margin-top: 100px;
   margin-bottom: 50px;
-  padding: 0px 10px 25px 10px;
+  padding: 0px 20px 25px 20px;
+  border-radius: 4%;
 }
 
 #aboutus p {
@@ -408,12 +407,44 @@ form label {
 }
 
 button:hover {
-  background-color: maroon;
-  box-shadow: 0px 10px 15px red;
-  color: #fff;
+  box-shadow: 0px 10px 15px white;
+  color: maroon;
   transform: translateY(-7px);
 }
 
 button:active span::before {
   background: maroon;
+}
+
+#cart-container {
+  color: black;
+  font-size: larger;
+  background-color: white;
+  opacity: 0.9;
+  margin-top: 200px;
+  width: auto;
+  padding: 15px;
+  border-radius: 4%;
+}
+
+#cart-container button {
+  width: fit-content;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  margin-left: 30px;
+}
+
+
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: whitesmoke;
+  opacity: 0.9;
+  border: 2px solid white;
+  box-shadow: 0px 2px 5px 1px black;
+  margin-top: 20px;
+  padding-bottom: 20px;
 }
