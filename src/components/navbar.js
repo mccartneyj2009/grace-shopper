@@ -52,7 +52,7 @@ const Navbar = ({ user, setToken, setUser }) => {
           </Link>
 
           <Link to="/info" className="link">
-            Info
+            About Us
           </Link>
           {lstoken ? (
             <>

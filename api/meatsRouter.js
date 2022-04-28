@@ -1,32 +1,32 @@
 const express = require("express");
 const {
-  createMeat,
-  updateMeat,
-  getAllMeats,
-  getMeatByStyle,
-  getAllStyles,
-  getMeatByAllSpecies,
-  getMeatBySingleSpecies,
-  getMeatById,
-  deleteMeat,
+    createMeat,
+    updateMeat,
+    getAllMeats,
+    getMeatByStyle,
+    getAllStyles,
+    getMeatByAllSpecies,
+    getMeatBySingleSpecies,
+    getMeatById,
+    deleteMeat,
 } = require("../db");
 
 const meatsRouter = express.Router();
 
 meatsRouter.use((req, res, next) => {
-  console.log("Requesting Meats");
+    // console.log("Requesting Meats");
 
-  next();
+    next();
 });
 
 //---------- Get Routes --------------//
 meatsRouter.get("/", async (req, res) => {
-  try {
-    const meat = await getAllMeats();
-    res.send(meat);
-  } catch (error) {
-    next(error);
-  }
+    try {
+        const meat = await getAllMeats();
+        res.send(meat);
+    } catch (error) {
+        next(error);
+    }
 });
 
 // meatsRouter.get("/:meatId", async (req, res, next) => {
@@ -40,43 +40,53 @@ meatsRouter.get("/", async (req, res) => {
 // });
 
 meatsRouter.get("/styles", async (req, res, next) => {
-  try {
-    const styles = await getAllStyles();
-    res.send(styles);
-  } catch (error) {
-    next(error);
-  }
+    try {
+        const styles = await getAllStyles();
+        res.send(styles);
+    } catch (error) {
+        next(error);
+    }
 });
 
 meatsRouter.get("/styles/:style", async (req, res, next) => {
-  try {
-    const meat = await getMeatByStyle(req.params.style);
-    res.send(meat);
-  } catch (error) {
-    next(error);
-  }
+    try {
+        const meat = await getMeatByStyle(req.params.style);
+        res.send(meat);
+    } catch (error) {
+        next(error);
+    }
 });
 
 meatsRouter.get("/species", async (req, res, next) => {
-  try {
-    const animal = await getMeatByAllSpecies();
-    res.send(animal);
-  } catch (error) {
-    next(error);
-  }
+    try {
+        const animal = await getMeatByAllSpecies();
+        res.send(animal);
+    } catch (error) {
+        next(error);
+    }
 });
 
 meatsRouter.get("/species/:type", async (req, res, next) => {
-  try {
-    const animalType = await getMeatBySingleSpecies(req.params.type);
-    res.send(animalType);
-  } catch (error) {
-    next(error);
-  }
+    try {
+        const animalType = await getMeatBySingleSpecies(req.params.type);
+        res.send(animalType);
+    } catch (error) {
+        next(error);
+    }
+});
+
+meatsRouter.get("/:id", async (req, res, next) => {
+    try {
+        const meat = await getMeatById(req.params.id);
+        res.send(meat);
+    } catch (error) {
+        next(error);
+    }
 });
 
 //-----Post Routes-----//
 
+<<<<<<< HEAD
 meatsRouter.post("/addMeat", async (req, res, next) => {
   const { species, style, description, image, flavor, price } = req.body;
   console.log(req.body);
@@ -91,44 +101,69 @@ meatsRouter.post("/addMeat", async (req, res, next) => {
     });
     if (newMeat) {
       res.send(newMeat);
+=======
+meatsRouter.post("/", async (req, res, next) => {
+    const { species, style, description, flavor, weight, price } = req.body;
+
+    try {
+        const newMeat = await createMeat({
+            species,
+            style,
+            description,
+            flavor,
+            weight,
+            price,
+        });
+        if (newMeat) {
+            res.send(newMeat);
+        }
+    } catch (error) {
+        next(error);
+>>>>>>> 470758d406e7f606d08ac5413c31014bfc24dacb
     }
-  } catch (error) {
-    next(error);
-  }
 });
 
 //----Patch Routes-----//
 
 meatsRouter.patch("/:meatId", async (req, res, next) => {
-  try {
-    const { meatId } = req.params;
-    const { description, weight, price } = req.body;
+    try {
+        const { meatId } = req.params;
+        const { description, weight, price } = req.body;
 
+<<<<<<< HEAD
     const newMeat = await updateMeat({
       id: meatId,
       description,
 
       price,
     });
+=======
+        const newMeat = await updateMeat({
+            id: meatId,
+            description,
+            weight,
+            price,
+        });
+>>>>>>> 470758d406e7f606d08ac5413c31014bfc24dacb
 
-    if (newMeat) {
-      res.send(newMeat);
+        if (newMeat) {
+            res.send(newMeat);
+        }
+    } catch (error) {
+        next(error);
     }
-  } catch (error) {
-    next(error);
-  }
 });
 
 //----Delete Meat---//
 meatsRouter.delete("/:meatId", async (req, res, next) => {
-  try {
-    const { meatId } = req.params;
+    try {
+        const { meatId } = req.params;
 
-    const meatDelete = await deleteMeat(meatId);
-    res.send(meatDelete);
-  } catch (error) {
-    next(error);
-  }
+        const meatDelete = await deleteMeat(meatId);
+        res.send(meatDelete);
+    } catch (error) {
+        next(error);
+    }
 });
 
 meatsRouter.delete("/:meat_id", async (req, res, next) => {

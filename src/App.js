@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import {
-  Meat,
-  Home,
-  Navbar,
-  Login,
-  Register,
-  Info,
-  Cart,
-  AddMeat,
+    Meat,
+    Home,
+    Navbar,
+    Login,
+    Register,
+    Info,
+    Cart,
+    OrderSubmitted,
 } from "./components";
 
 const App = () => {
